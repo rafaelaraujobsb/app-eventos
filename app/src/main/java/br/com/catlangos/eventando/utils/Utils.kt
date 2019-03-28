@@ -1,7 +1,6 @@
 package br.com.catlangos.eventando.utils
 
-/**
- *
- */
-class Utils {
+public class Utils {
+
+    public fun isNull(value: Any?) = if (value == null || value == "") true else false
 }
