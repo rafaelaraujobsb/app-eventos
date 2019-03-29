@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,16 +26,16 @@ class LoginActivity : AppCompatActivity() {
 
     private fun eventoLogin(view: View) {
         //TODO Mensagem mais amigavel com interface melhor
-        apresentarMensagem(view, "Autenticando...")
+        utils. apresentarMensagem(view, "Autenticando...")
 
         if(!utils.isNull(txtEmail.text.toString()) && !utils.isNull(txtSenha.text.toString())) {
             autenticacao?.signInWithEmailAndPassword(txtEmail.text.toString(), txtSenha.text.toString())?.addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                 if(task.isSuccessful) {
                     //TODO Mensagem mais amigavel com interface melhor
-                    apresentarMensagem(view, "Autenticado com Sucesso!")
+                    utils.apresentarMensagem(view, "Autenticado com Sucesso!")
                 } else {
                     //TODO Mensagem mais amigavel com interface melhor
-                    apresentarMensagem(view, "Ops... Falha ao autenticar!")
+                    utils.apresentarMensagem(view, "Ops... Falha ao autenticar!")
                 }
             })
         }
@@ -45,9 +44,5 @@ class LoginActivity : AppCompatActivity() {
     private fun resetarSenha(view: View) {
         intent = Intent(this, RedefinicaoSenhaActivity::class.java)
         startActivity(intent)
-    }
-
-    private fun apresentarMensagem(view:View, message: String){
-        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
     }
 }
