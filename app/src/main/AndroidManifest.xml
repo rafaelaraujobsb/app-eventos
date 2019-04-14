@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name=".login.RedefinicaoSenhaActivity">
+        </activity>
+
+        <activity android:name=".login.CadastroActivity">
         </activity>
     </application>
 

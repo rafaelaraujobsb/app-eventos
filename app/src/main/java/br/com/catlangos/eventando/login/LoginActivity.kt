@@ -23,17 +23,21 @@ class LoginActivity : AppCompatActivity() {
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
         txtResetarSenha?.setOnClickListener { view -> resetarSenha(view ) }
+        txtCadastrar?.setOnClickListener { view -> cadastrar(view) }
+
     }
 
     private fun eventoLogin(view: View) {
         //TODO Mensagem mais amigavel com interface melhor
         apresentarMensagem(view, "Autenticando...")
 
-        if(!utils.isNull(txtEmail.text.toString()) && !utils.isNull(txtSenha.text.toString())) {
+        if(!Utils.isNull(txtEmail.text.toString()) && !Utils.isNull(txtSenha.text.toString())) {
             autenticacao?.signInWithEmailAndPassword(txtEmail.text.toString(), txtSenha.text.toString())?.addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                 if(task.isSuccessful) {
                     //TODO Mensagem mais amigavel com interface melhor
                     apresentarMensagem(view, "Autenticado com Sucesso!")
+                    //intent = Intent(this, CadastroActivity::class.java)
+                    //startActivity(intent)
                 } else {
                     //TODO Mensagem mais amigavel com interface melhor
                     apresentarMensagem(view, "Ops... Falha ao autenticar!")
@@ -44,6 +48,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun resetarSenha(view: View) {
         intent = Intent(this, RedefinicaoSenhaActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun cadastrar(view: View){
+        intent = Intent(this, CadastroActivity::class.java)
         startActivity(intent)
     }
 
