@@ -20,6 +20,4 @@ class Utils {
             return v1.text.toString()
         }
     }
-
-
 }

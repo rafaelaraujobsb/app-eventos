@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun eventoLogin(view: View) {
         //TODO Mensagem mais amigavel com interface melhor
-        apresentarMensagem(view, "Autenticando...")
+        utils. apresentarMensagem(view, "Autenticando...")
 
         if(!Utils.isNull(txtEmail.text.toString()) && !Utils.isNull(txtSenha.text.toString())) {
             autenticacao?.signInWithEmailAndPassword(txtEmail.text.toString(), txtSenha.text.toString())?.addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
@@ -40,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                     //startActivity(intent)
                 } else {
                     //TODO Mensagem mais amigavel com interface melhor
-                    apresentarMensagem(view, "Ops... Falha ao autenticar!")
+                    utils.apresentarMensagem(view, "Ops... Falha ao autenticar!")
                 }
             })
         }
