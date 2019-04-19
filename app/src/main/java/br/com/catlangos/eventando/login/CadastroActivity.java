@@ -58,9 +58,11 @@ public class CadastroActivity extends AppCompatActivity {
                         perfil.setCpf(Utils.Companion.editTextToString(numCpf));
                         perfil.setDataNascimento(Utils.Companion.editTextToString(dateDataNascimento));
                         cadastrar();
+                    }else{
+                        Toast.makeText(CadastroActivity.this, "Os emails devem ser iguais!", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(CadastroActivity.this, "Os emails não se correspondem!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CadastroActivity.this, "As senhas devem ser iguais!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -91,7 +93,7 @@ public class CadastroActivity extends AppCompatActivity {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            Toast.makeText(CadastroActivity.this, "Erro: " + erroExcecao, Toast.LENGTH_LONG).show();
+                            Toast.makeText(CadastroActivity.this, erroExcecao, Toast.LENGTH_LONG).show();
                         }
                     }
                 }

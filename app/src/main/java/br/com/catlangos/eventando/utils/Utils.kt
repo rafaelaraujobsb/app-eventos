@@ -9,7 +9,7 @@ class Utils {
         fun isNull(value: Any?) = if (value == null || value == "") true else false
 
         fun isEqualsEditText(v1 : EditText , v2 : EditText) : Boolean{
-            if(v1.text.toString().equals(v1.text.toString())){
+            if(v1.text.toString().equals(v2.text.toString())){
                 return true
             }
             return false
