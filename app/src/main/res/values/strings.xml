@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Eventando</string>
+    <string name="descricao">Descrição</string>
+    <string name="local_do_evento">Local do evento</string>
+    <string name="nome_do_evento">Nome do evento</string>
+    <string name="data">Data</string>
 </resources>

@@ -1,6 +1,8 @@
 package br.com.catlangos.eventando.utils
 
+import android.view.View
 import android.widget.EditText
+import com.google.android.material.snackbar.Snackbar
 
 class Utils {
 
@@ -19,5 +21,9 @@ class Utils {
         fun editTextToString(v1 : EditText) : String{
             return v1.text.toString()
         }
+    }
+
+    fun apresentarMensagem(view: View, message: String){
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
     }
 }

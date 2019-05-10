@@ -59,7 +59,7 @@
                     android:inputType="textEmailAddress"/>
 
             <EditText
-                    android:id="@+id/txtConfirmarEmail"
+                    android:id="@+id/txtDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
