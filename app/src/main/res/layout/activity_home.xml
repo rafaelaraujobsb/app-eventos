@@ -13,7 +13,7 @@
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical">
-        <Toolbar android:layout_width="match_parent"
+        <androidx.appcompat.widget.Toolbar android:layout_width="match_parent"
                  android:layout_height="?attr/actionBarSize"
                  android:background="@color/colorPrimary"
                  android:id="@+id/toolbar"
@@ -32,6 +32,7 @@
             android:layout_height="match_parent"
             android:id="@+id/nav_view"
             android:layout_gravity="start"
+            android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header"
             app:menu="@menu/drawer_menu"/>
 
