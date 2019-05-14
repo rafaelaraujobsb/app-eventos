@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         //TODO Mensagem mais amigavel com interface melhor
         utils.apresentarMensagem(view, "Autenticando...")
 
-        if(!utils.isNull(txtEmail.text.toString()) && !utils.isNull(txtSenha.text.toString())) {
+        if(!Utils.isNull(txtEmail.text.toString()) && !Utils.isNull(txtSenha.text.toString())) {
             autenticacao?.signInWithEmailAndPassword(txtEmail.text.toString(), txtSenha.text.toString())?.addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                 if(task.isSuccessful) {
                     utils.apresentarMensagem(view, "Autenticado com Sucesso!")
@@ -46,5 +46,14 @@ class LoginActivity : AppCompatActivity() {
     private fun resetarSenha() {
         intent = Intent(this, RedefinicaoSenhaActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun cadastrar(view: View){
+        intent = Intent(this, CadastroActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun apresentarMensagem(view:View, message: String){
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
     }
 }
