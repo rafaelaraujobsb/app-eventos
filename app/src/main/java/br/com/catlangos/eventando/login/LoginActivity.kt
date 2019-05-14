@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
+import br.com.catlangos.eventando.home.HomeActivity
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -21,18 +22,19 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
-        txtResetarSenha?.setOnClickListener { view -> resetarSenha(view ) }
+        txtResetarSenha?.setOnClickListener { resetarSenha() }
     }
 
     private fun eventoLogin(view: View) {
         //TODO Mensagem mais amigavel com interface melhor
-        utils. apresentarMensagem(view, "Autenticando...")
+        utils.apresentarMensagem(view, "Autenticando...")
 
         if(!utils.isNull(txtEmail.text.toString()) && !utils.isNull(txtSenha.text.toString())) {
             autenticacao?.signInWithEmailAndPassword(txtEmail.text.toString(), txtSenha.text.toString())?.addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
                 if(task.isSuccessful) {
-                    //TODO Mensagem mais amigavel com interface melhor
                     utils.apresentarMensagem(view, "Autenticado com Sucesso!")
+                    intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
                 } else {
                     //TODO Mensagem mais amigavel com interface melhor
                     utils.apresentarMensagem(view, "Ops... Falha ao autenticar!")
@@ -41,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun resetarSenha(view: View) {
+    private fun resetarSenha() {
         intent = Intent(this, RedefinicaoSenhaActivity::class.java)
         startActivity(intent)
     }
