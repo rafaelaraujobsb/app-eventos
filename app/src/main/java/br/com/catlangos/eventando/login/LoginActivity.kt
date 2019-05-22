@@ -8,6 +8,7 @@ import br.com.catlangos.eventando.R
 import br.com.catlangos.eventando.home.HomeActivity
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun cadastrar(view: View){
+    private fun cadastrar(){
         intent = Intent(this, CadastroActivity::class.java)
         startActivity(intent)
     }

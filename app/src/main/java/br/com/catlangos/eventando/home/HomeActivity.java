@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
+import br.com.catlangos.eventando.fragmentos.QrcodeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +49,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MenuPrincipal()).commit();
+                break;
+
+            case R.id.nav_qrcode:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new QrcodeFragment()).commit();
                 break;
         }
 
