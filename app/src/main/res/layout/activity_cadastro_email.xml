@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#5fb0c9"
                 android:orientation="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true" android:layout_width="match_parent"
-                android:visibility="visible">
+                android:scrollbarAlwaysDrawVerticalTrack="true">
 
     <TextView
             android:id="@+id/login_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="44dp"
             android:gravity="center_horizontal"
-            android:text="Login Teste"
+            android:text="Cadastro"
             android:textColor="#fff"
             android:textSize="26sp"
             android:textStyle="bold"/>
@@ -24,7 +24,7 @@
             android:layout_below="@+id/login_title"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:background="#fff"
             android:elevation="4dp"
             android:orientation="vertical"
@@ -40,9 +40,20 @@
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableTint="#FF4081"
+                    android:layout_marginTop="16dp"
                     android:singleLine="true"
+                    android:drawableTint="#FF4081"
                     android:hint="Email"
+                    android:inputType="textEmailAddress"/>
+
+            <EditText
+                    android:id="@+id/txtConfirmarEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:singleLine="true"
+                    android:drawableTint="#FF4081"
+                    android:hint="Confirme o email"
                     android:inputType="textEmailAddress"/>
 
             <EditText
@@ -55,49 +66,27 @@
                     android:hint="Senha"
                     android:inputType="textPassword"/>
 
-            <TextView
+            <EditText
+                    android:id="@+id/txtConfirmarSenha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:paddingTop="5dp"
-                    android:clickable="true"
-                    android:onClick="onClick"
-                    android:id="@+id/txtResetarSenha"
-                    android:gravity="center"
-                    android:text="Esqueceu sua Senha?"/>
+                    android:layout_marginTop="16dp"
+                    android:singleLine="true"
+                    android:drawableTint="#FF4081"
+                    android:hint="Confirme a senha"
+                    android:inputType="textPassword"/>
 
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:paddingTop="5dp"
-                    android:clickable="true"
-                    android:onClick="onClick"
-                    android:id="@+id/txtCadastrar"
-                    android:gravity="center"
-                    android:text="Cadastre-se"/>
             <Button
-                    android:id="@+id/btnEntrar"
+                    android:id="@+id/btnCadastrar"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="22dp"
                     android:background="#d67601"
-                    android:text="Entrar"
+                    android:text="Cadastrar"
                     android:textAllCaps="false"
                     android:textColor="#fff"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
 
-    <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/login_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/user_profile_image_background"
-            android:elevation="4dp"
-            android:src="@drawable/person"/>
 </RelativeLayout>
