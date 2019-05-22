@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
-        txtResetarSenha?.setOnClickListener { view -> resetarSenha(view ) }
+        btnResetarSenha?.setOnClickListener { view -> resetarSenha(view ) }
     }
 
     private fun eventoLogin(view: View) {

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Eventando</string>
+    <string name="acessar_conta">Acessar Conta</string>
+    <string name="login">LOGIN</string>
+    <string name="recuperar_senha">RECUPERAR SENHA</string>
+    <string name="ou">OU</string>
+    <string name="criar_conta">CRIAR CONTA</string>
+    <string name="e_mail">E-mail</string>
 </resources>

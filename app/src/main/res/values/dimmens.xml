@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleTextSize">50sp</dimen>
+    <dimen name="paragraphTextSize">16sp</dimen>
+    <dimen name="primaryButtonTextSize">18sp</dimen>
+    <dimen name="secondaryButtonTextSize">16sp</dimen>
+
+    <dimen name="marginSize">32dp</dimen>
+    <dimen name="cornersSize">3dp</dimen>
+    <dimen name="boxHeightSize">40dp</dimen>
+    <dimen name="paddingSize">5dp</dimen>
+
+
+</resources>
