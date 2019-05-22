@@ -6,4 +6,6 @@
     <string name="ou">OU</string>
     <string name="criar_conta">CRIAR CONTA</string>
     <string name="e_mail">E-mail</string>
+    <string name="navigation_drawer_open">Abrir</string>
+    <string name="navigation_drawer_close">Fechar</string>
 </resources>
