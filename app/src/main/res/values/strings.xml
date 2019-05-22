@@ -4,4 +4,8 @@
     <string name="local_do_evento">Local do evento</string>
     <string name="nome_do_evento">Nome do evento</string>
     <string name="data">Data</string>
+    <string name="title_activity_mapa">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/criarEventoFragment">
+
+    <fragment android:id="@+id/criarEventoFragment"
+              android:name="br.com.catlangos.eventando.evento.CriarEventoFragment"
+              android:label="criar_evento_fragment"
+              tools:layout="@layout/criar_evento_fragment">
+        <action
+            android:id="@+id/action_mapa"
+            app:destination="@id/mapa2"/>
+    </fragment>
+
+    <fragment android:id="@+id/mapa2"
+              android:name="br.com.catlangos.eventando.Mapa"
+              android:label="activity_mapa"
+              tools:layout="@layout/activity_mapa">
+    </fragment>
+</navigation>

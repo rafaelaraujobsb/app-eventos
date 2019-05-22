@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
+import br.com.catlangos.eventando.evento.CriarEventoActivity
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
         txtResetarSenha?.setOnClickListener { view -> resetarSenha(view ) }
         txtCadastrar?.setOnClickListener { view -> cadastrar(view) }
-
+        btnTeste?.setOnClickListener { view -> abrirCriarEvento(view) }
     }
 
     private fun eventoLogin(view: View) {
@@ -57,5 +59,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun apresentarMensagem(view:View, message: String){
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
+    }
+
+    private fun abrirCriarEvento(view: View){
+        intent = Intent(this, CriarEventoActivity::class.java)
+        startActivity(intent)
     }
 }
