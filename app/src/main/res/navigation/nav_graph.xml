@@ -11,10 +11,10 @@
               tools:layout="@layout/criar_evento_fragment">
         <action
             android:id="@+id/action_mapa"
-            app:destination="@id/mapa2"/>
+            app:destination="@id/fragmentMapa"/>
     </fragment>
 
-    <fragment android:id="@+id/mapa2"
+    <fragment android:id="@+id/fragmentMapa"
               android:name="br.com.catlangos.eventando.Mapa"
               android:label="activity_mapa"
               tools:layout="@layout/activity_mapa">
