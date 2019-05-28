@@ -15,8 +15,8 @@ import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.libraries.places.compat.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+//import com.google.android.gms.location.places.Place;
+//import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
@@ -127,33 +127,33 @@ public class CriarEventoFragment extends Fragment {
     }
 
     private void configurarTxtLocal(View view){
-        local = view.findViewById(R.id.txtLocal);
-        local.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                Intent intent;
-                try {
-                    intent = builder.build(requireActivity());
-                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        local = view.findViewById(R.id.txtLocal);
+//        local.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+//                Intent intent;
+//                try {
+//                    intent = builder.build(requireActivity());
+//                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
+//                } catch (GooglePlayServicesRepairableException e) {
+//                    e.printStackTrace();
+//                } catch (GooglePlayServicesNotAvailableException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PLACE_PICKER_REQUEST){
-            if(resultCode == RESULT_OK){
-                Place localizacao = PlacePicker.getPlace(requireActivity(), data);
-                String endereco = String.format("Endereço: "+ localizacao.getAddress());
-                local.setText(endereco);
-            }
-        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == PLACE_PICKER_REQUEST){
+//            if(resultCode == RESULT_OK){
+//                Place localizacao = PlacePicker.getPlace(requireActivity(), data);
+//                String endereco = String.format("Endereço: "+ localizacao.getAddress());
+//                local.setText(endereco);
+//            }
+//        }
     }
 }
