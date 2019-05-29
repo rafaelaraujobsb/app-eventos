@@ -6,7 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
 import br.com.catlangos.eventando.evento.CriarEventoActivity
-import br.com.catlangos.eventando.evento.PlacesActivity
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.snackbar.Snackbar

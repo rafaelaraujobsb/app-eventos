@@ -13,22 +13,15 @@ import androidx.fragment.app.Fragment;
 import br.com.catlangos.eventando.Mapa;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-//import com.google.android.gms.location.places.Place;
-//import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.database.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.app.Activity.RESULT_OK;
 
 public class CriarEventoFragment extends Fragment {
 
     private Button button;
     private TextView local;
-    private int PLACE_PICKER_REQUEST = 1111;
+    private int PLACE_PICKER_REQUEST = 1;
     private List<String> categorias = new ArrayList<>();
 
     public CriarEventoFragment(){
@@ -49,8 +42,9 @@ public class CriarEventoFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //configurarTxtLocal(view);
         configurarBtnLocal(view);
-        configurarTxtLocal(view);
+
 
         FirebaseDatabase fireBaseDatabase =  FirebaseDatabase.getInstance();
 
@@ -121,7 +115,6 @@ public class CriarEventoFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Mapa.class);
                 startActivity(intent);
-
             }
         });
     }
