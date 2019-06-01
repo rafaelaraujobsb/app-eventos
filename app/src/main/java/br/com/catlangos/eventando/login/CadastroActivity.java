@@ -38,7 +38,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         txtNome = findViewById(R.id.txtNome);
         txtEmail = findViewById(R.id.txtEmail);
-        txtConfirmarEmail = findViewById(R.id.txtConfirmarEmail);
+        txtConfirmarEmail = findViewById(R.id.txtDescricao);
         numCpf = findViewById(R.id.numCpf);
         dateDataNascimento = findViewById(R.id.dateDataNascimento);
         txtSenha = findViewById(R.id.txtSenha);
