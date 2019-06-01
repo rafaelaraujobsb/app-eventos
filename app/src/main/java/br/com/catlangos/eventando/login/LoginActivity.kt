@@ -24,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
-        txtCadastrar?.setOnClickListener { view -> cadastrar(view) }
-        btnTeste?.setOnClickListener { view -> abrirCriarEvento(view) }
+        txtCadastrar?.setOnClickListener { view -> cadastrar() }
+        btnTeste?.setOnClickListener { view -> abrirCriarEvento() }
         txtResetarSenha?.setOnClickListener { resetarSenha() }
     }
 
@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun cadastrar(view: View){
+    private fun cadastrar(){
         intent = Intent(this, CadastroActivity::class.java)
         startActivity(intent)
     }
@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
     }
 
-    private fun abrirCriarEvento(view: View){
+    private fun abrirCriarEvento(){
         intent = Intent(this, CriarEventoActivity::class.java)
         startActivity(intent)
     }
