@@ -1,6 +1,8 @@
 package br.com.catlangos.eventando.utils
 
+import android.view.View
 import android.widget.EditText
+import com.google.android.material.snackbar.Snackbar
 
 class Utils {
 
@@ -17,7 +19,14 @@ class Utils {
 
         //Transforma edit text em String
         fun editTextToString(v1 : EditText) : String{
-            return v1.text.toString()
+            if(v1 != null){
+                return v1.text.toString()
+            }
+            return ""
         }
+    }
+
+    fun apresentarMensagem(view: View, message: String){
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
     }
 }

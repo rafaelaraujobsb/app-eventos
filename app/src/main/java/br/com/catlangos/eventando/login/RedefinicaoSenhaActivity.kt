@@ -24,7 +24,7 @@ class RedefinicaoSenhaActivity : AppCompatActivity() {
     }
 
     private fun redefinirSenha(view: View) {
-        if(!utils.isNull(txtEmail.text.toString())) {
+        if(!Utils.isNull(txtEmail.text.toString())) {
             autenticacao?.sendPasswordResetEmail(txtEmail.text.toString())?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     utils.apresentarMensagem(view, "Nova senha enviada para " + txtEmail.text.toString())
