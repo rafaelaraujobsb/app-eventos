@@ -40,23 +40,22 @@
                 android:label="@string/title_activity_mapa">
         </activity>
         <activity android:name=".login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity android:name=".home.HomeActivity"
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-                android:name=".login.LoginActivity">
-        </activity>
+
         <activity android:name=".login.RedefinicaoSenhaActivity">
         </activity>
         <activity android:name=".login.CadastroActivity">
         </activity>
-          
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
     </application>
 
 </manifest>

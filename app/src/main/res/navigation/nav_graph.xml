@@ -19,4 +19,6 @@
               android:label="activity_mapa"
               tools:layout="@layout/activity_mapa">
     </fragment>
+    <activity android:id="@+id/homeActivity" android:name="br.com.catlangos.eventando.home.HomeActivity"
+              android:label="activity_home" tools:layout="@layout/activity_home"/>
 </navigation>

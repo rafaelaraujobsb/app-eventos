@@ -188,6 +188,7 @@ public class CriarEventoFragment extends Fragment {
         evento.setBairro(Utils.Companion.editTextToString(bairro));
         evento.setCidade(Utils.Companion.editTextToString(cidade));
         evento.setEstado(Utils.Companion.editTextToString(estado));
+        evento.setComplemento(Utils.Companion.editTextToString(complemento));
         evento.setCategoria(categoria);
         evento.setDescricao(Utils.Companion.editTextToString(descricao));
         evento.setNome(Utils.Companion.editTextToString(nome));
