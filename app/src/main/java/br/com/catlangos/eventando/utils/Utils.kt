@@ -19,7 +19,10 @@ class Utils {
 
         //Transforma edit text em String
         fun editTextToString(v1 : EditText) : String{
-            return v1.text.toString()
+            if(v1 != null){
+                return v1.text.toString()
+            }
+            return ""
         }
     }
 
