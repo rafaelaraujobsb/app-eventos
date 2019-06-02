@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
         txtCadastrar?.setOnClickListener { cadastrar() }
-        btnTeste?.setOnClickListener { abrirCriarEvento() }
         txtResetarSenha?.setOnClickListener { resetarSenha() }
     }
 
@@ -59,10 +58,5 @@ class LoginActivity : AppCompatActivity() {
 
     private fun apresentarMensagem(view:View, message: String){
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
-    }
-
-    private fun abrirCriarEvento(){
-        intent = Intent(this, CriarEventoActivity::class.java)
-        startActivity(intent)
     }
 }

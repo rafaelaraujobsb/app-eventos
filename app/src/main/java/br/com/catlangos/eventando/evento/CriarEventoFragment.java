@@ -19,6 +19,8 @@ import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.login.CadastroActivity;
 import br.com.catlangos.eventando.login.Perfil;
 import br.com.catlangos.eventando.utils.Utils;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
 import java.text.SimpleDateFormat;
@@ -55,13 +57,9 @@ public class CriarEventoFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static CriarEventoFragment newInstance() {
-        return new CriarEventoFragment();
-    }
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.criar_evento_fragment, container, false);
     }
 
@@ -172,8 +170,18 @@ public class CriarEventoFragment extends Fragment {
 
     private void cadastrar(Evento evento) {
         try {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Eventos");
-            reference.push().setValue(evento);
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Eventos");
+            final String chave = reference.push().getKey();
+            reference.child(chave).setValue(evento).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    final DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("evento_user");
+                    EventoUser eventoUser = new EventoUser();
+                    eventoUser.setUsuario(FirebaseAuth.getInstance().getUid());
+                    eventoUser.setEvento(chave);
+                    reference2.push().setValue(eventoUser);
+                }
+            });
             Toast.makeText(requireContext(), "Evento criado com sucesso!", Toast.LENGTH_LONG).show();
             getActivity().finish();
         }catch (Exception e){

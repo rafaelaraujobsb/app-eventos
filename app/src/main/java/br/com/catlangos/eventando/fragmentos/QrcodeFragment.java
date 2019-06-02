@@ -10,25 +10,78 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import br.com.catlangos.eventando.R;
+import br.com.catlangos.eventando.evento.Evento;
+import br.com.catlangos.eventando.utils.Utils;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.*;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QrcodeFragment extends Fragment implements View.OnClickListener {
 
-    Button btnGerar;
-    ImageView imgQrcode;
+    private Button btnGerar;
+    private ImageView imgQrcode;
+    private FirebaseDatabase fireBaseDatabase;
+    private DatabaseReference dataBase;
+    private FirebaseUser usuario;
+    private List<Evento> eventos = new ArrayList<>();
+
+    private void recuperarListaEventos() {
+        usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+        String uid = usuario.getUid();
+
+        Query query = dataBase.child("/evento_user/").equalTo(uid);
+        final List<String> idsEventos = new ArrayList<>();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                idsEventos.add(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_qrcode, container, false);
 
+        recuperarListaEventos();
         inicializarComponentes(v);
         clickButton();
+
+        List<Evento> eventos = new ArrayList<>();
+
+        Evento e1 = new Evento();
+        e1.setNome("Teste");
+
+        Evento e2 = new Evento();
+        e2.setNome("Teste2");
+
+        eventos.add(e1);
+        eventos.add(e2);
+
+
+        RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new MeuAdaptador(eventos));
 
         return v;
     }
