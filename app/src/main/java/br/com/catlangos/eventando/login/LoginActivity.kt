@@ -24,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
-        txtCadastrar?.setOnClickListener { view -> cadastrar() }
-        btnTeste?.setOnClickListener { view -> abrirCriarEvento() }
+        txtCadastrar?.setOnClickListener { cadastrar() }
+        btnTeste?.setOnClickListener { abrirCriarEvento() }
         txtResetarSenha?.setOnClickListener { resetarSenha() }
     }
 

@@ -5,29 +5,23 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Iterator;
 import java.util.List;
 
 public class ServicoTask extends AsyncTask<Void, Void, String> {
     private Context httpContext;
     private View view;
-    ProgressDialog progressDialog;
-    public String resultadoAPI = "";
-    public String linkRequestAPI = "";
+    private ProgressDialog progressDialog;
+    private String resultadoAPI;
+    private String linkRequestAPI;
     private Integer idUsuario;
     private List<Interesses> interesses;
-    private String[] interessesFormatados;
 
     public ServicoTask(Context ctx, String linkAPI, View view, Integer idUsuario, List<Interesses> interesses) {
         for(Interesses interesse : interesses) {
@@ -38,13 +32,6 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
         this.view = view;
         this.idUsuario = idUsuario;
         this.interesses = interesses;
-        interessesFormatados = new String[this.interesses.size()];
-    }
-
-    private void prepararInteresses(List<Interesses> interesses) {
-        for(Integer i = 0; i < interesses.size(); i++) {
-            interessesFormatados[i] = interesses.get(i).getName();
-        }
     }
 
     @Override
@@ -58,7 +45,7 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
         String result= null;
 
         String wsURL = linkRequestAPI;
-        URL url = null;
+        URL url;
         try {
             url = new URL(wsURL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -68,7 +55,7 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
             JSONObject parametrosPost = new JSONObject();
             JSONArray jsonArray = new JSONArray();
             parametrosPost.put("id_usuario", idUsuario);
-            for(Integer i = 0; i < this.interesses.size(); i++) {
+            for(int i = 0; i < this.interesses.size(); i++) {
                 jsonArray.put(this.interesses.get(i).getName());
             }
             parametrosPost.put("interesses", jsonArray);
