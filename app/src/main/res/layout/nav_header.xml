@@ -3,26 +3,29 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="176dp"
-              android:background="@color/colorAccent"
               android:gravity="bottom"
               android:padding="16dp"
-              android:theme="@style/ThemeOverlay.AppCompat.Dark">
+              android:background="@color/colorPrimaryDark"
+              android:theme="@style/AppTheme">
 
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"/>
-
+            android:src="@mipmap/ic_launcher_round"
+    />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="Eventando"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            style="@style/TitleTheme"
+    />
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seu aplicativo de eventos!"/>
+            android:text="Seu aplicativo de eventos!"
+            style="@style/ParagraphTheme"
+    />
 
 </LinearLayout>
