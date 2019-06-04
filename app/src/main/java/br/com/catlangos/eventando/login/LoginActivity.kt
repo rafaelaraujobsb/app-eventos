@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
+import br.com.catlangos.eventando.evento.CriarEventoActivity
 import br.com.catlangos.eventando.home.HomeActivity
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
@@ -23,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
-        btnResetarSenha?.setOnClickListener { view -> resetarSenha(view ) }
-
+        btnCadastrar?.setOnClickListener { view -> cadastrar(view) }
+        btnResetarSenha?.setOnClickListener { resetarSenha() }
     }
 
     private fun eventoLogin(view: View) {
@@ -58,5 +59,10 @@ class LoginActivity : AppCompatActivity() {
     private fun apresentarMensagem(view:View, message: String){
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
 
+    }
+
+    private fun abrirCriarEvento(view: View){
+        intent = Intent(this, CriarEventoActivity::class.java)
+        startActivity(intent)
     }
 }

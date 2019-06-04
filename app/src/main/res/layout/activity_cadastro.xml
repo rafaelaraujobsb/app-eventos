@@ -5,7 +5,9 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    android:scrollbarAlwaysDrawVerticalTrack="true"
-                                                   android:id="@+id/scrollView2">
+                                                   android:id="@+id/scrollView2"
+                                                   style="@style/AppTheme"
+>
     <TextView
             android:text="Cadastro"
             android:layout_width="wrap_content"
