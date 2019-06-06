@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_cadastrar_evento:
-                getSupportFragmentManager().beginTransaction().replace(R.id.criarEventoFragment,
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new CriarEventoFragment()).commit();
         }
 

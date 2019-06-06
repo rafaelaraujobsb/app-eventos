@@ -53,10 +53,6 @@ public class CriarEventoFragment extends Fragment {
     private int REQUEST_CODE = 1;
     private List<String> categorias = new ArrayList<>();
 
-    public CriarEventoFragment(){
-        // Required empty public constructor
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
