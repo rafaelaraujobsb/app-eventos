@@ -10,6 +10,9 @@
         <item android:id="@+id/nav_cadastrar_evento"
               android:icon="@drawable/ic_send"
               android:title="Cadastrar Evento"/>
+        <item android:id="@+id/nav_buscar_evento"
+              android:icon="@drawable/ic_search"
+              android:title="Buscar Evento"/>
         <item android:id="@+id/nav_qrcode"
               android:icon="@drawable/ic_chat"
               android:title="Gerador de Ingressos - QrCode"/>

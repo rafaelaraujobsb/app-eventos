@@ -19,4 +19,7 @@
     <string name="selecionar_interesses">Selecionar Interesses</string>
     <string name="data_de_nasicmento">Data de nasicmento</string>
     <string name="cpf">CPF</string>
+    <string name="tipo">TIPO</string>
+    <string name="criar">CRIAR</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

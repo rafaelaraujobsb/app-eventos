@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +12,14 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import br.com.catlangos.eventando.Mapa;
 import br.com.catlangos.eventando.R;
-import br.com.catlangos.eventando.login.CadastroActivity;
-import br.com.catlangos.eventando.login.Perfil;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -145,6 +138,7 @@ public class CriarEventoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Mapa.class);
+                intent.putExtra(Mapa.TIPO, Mapa.CRIAR);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });

@@ -42,6 +42,9 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
 
     public static String LATITUDE = "latitude";
     public static String LONGITUDE = "longitude";
+    public final static String BUSCAR = "BUSCAR";
+    public final static String CRIAR = "CRIAR";
+    public final static String TIPO = "TIPO";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,8 +64,6 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         inicializaPlaces();
         setUpPlaceAutoComplete();
         configurarBtnLocal();
-
-        geocoder = new Geocoder(this);
         LatLng iesb = new LatLng(-15.8349281, -47.9128294);
         mMap.addMarker(new MarkerOptions().position(iesb).title("Marcador IESB").draggable(true));
         setLatLngSelecionado(iesb);
@@ -71,21 +72,12 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onMapLongClick(LatLng latLng) {
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(latLng)
-                        .title(latLng.toString())
-                        .draggable(true));
+                mMap.addMarker(new MarkerOptions().position(latLng).draggable(true));
                 setLatLngSelecionado(latLng);
-//                try {
-//                    Address adress =  geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1).get(0);
-//                    if(adress != null){
-//                        m.setTitle(adress.getAddressLine(0));
-//                    }
-//                } catch (IOException e) {
-//                    Toast.makeText(Mapa.this, "Nome do local não encontrado", Toast.LENGTH_LONG).show();
-//                }
             }
         });
 
+        geocoder = new Geocoder(this);
     }
 
     private void configurarBtnLocal() {

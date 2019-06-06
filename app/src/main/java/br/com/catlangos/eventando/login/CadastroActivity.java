@@ -212,6 +212,7 @@ public class CadastroActivity extends AppCompatActivity {
             reference = FirebaseDatabase.getInstance().getReference().child("Usuarios");
             reference.push().setValue(p);
             Toast.makeText(CadastroActivity.this, "Usuário cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+            finish();
 
         }catch (Exception e){
             Toast.makeText(CadastroActivity.this, "Erro ao gravar usuário!", Toast.LENGTH_LONG).show();

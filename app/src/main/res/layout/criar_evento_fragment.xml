@@ -67,7 +67,7 @@
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/CEP"
-                            android:inputType="text|textMultiLine"/>
+                            android:inputType="numberDecimal"/>
 
                     <EditText
                             android:id="@+id/txtEstado"
@@ -77,7 +77,7 @@
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/estado"
-                            android:inputType="text|textMultiLine"/>
+                            android:inputType="textAutoComplete"/>
 
                     <EditText
                             android:id="@+id/txtCidade"
@@ -136,8 +136,8 @@
 
                     <Spinner
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/spnCategoria"
-                            android:autofillHints="teste"/>
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spnCategoria"/>
                     <!--<TextView
                             android:text="Data"
                             android:layout_width="match_parent"

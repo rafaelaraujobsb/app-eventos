@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="br.com.catlangos.eventando">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -19,9 +20,6 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
 
-        <uses-library
-                android:name="org.apache.http.legacy"
-                android:required="false"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,6 +31,15 @@
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key"/>
+
+        <activity
+                android:name=".MapsActivity"
+                android:label="@string/title_activity_maps">
+        </activity>
+
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false"/>
 
         <activity android:name=".evento.CriarEventoActivity">
         </activity>
@@ -48,16 +55,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".home.HomeActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".home.HomeActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".login.RedefinicaoSenhaActivity">
         </activity>
         <activity android:name=".login.CadastroActivity">
         </activity>
-
-          
-
     </application>
 
 </manifest>

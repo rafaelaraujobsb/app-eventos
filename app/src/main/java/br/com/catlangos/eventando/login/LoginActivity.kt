@@ -43,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
                     utils.apresentarMensagem(view, "Ops... Falha ao autenticar!")
                 }
             })
+        }else{
+            utils.apresentarMensagem(view, "Insira o e-mail e a senha")
         }
     }
 
