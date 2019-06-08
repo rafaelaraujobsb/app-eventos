@@ -61,6 +61,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new BuscarEventoFragment()).commit();
                 break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);
