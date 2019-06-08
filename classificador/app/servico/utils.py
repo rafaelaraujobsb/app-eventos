@@ -1,8 +1,8 @@
 import pickle
 
 import pandas as pd
-from bson import BSON
 
+from app.config import LOCAL_DATASET
 from app.servico.database import Database
 
 
@@ -18,9 +18,7 @@ def ler_csv(arquivo: str, usar_colunas: list = None, qtd_it: int = None, cod: st
     :return: DataFrame pandas
     :rtype: pd.Dataframe
     """
-    DIR_DATASETS = './meetups-data-from-meetupcom'
-
-    return pd.read_csv(f'{DIR_DATASETS}/{arquivo}', usecols=usar_colunas, chunksize=qtd_it, index_col=False, encoding='iso-8859-1')
+    return pd.read_csv(f'{LOCAL_DATASET}/{arquivo}', usecols=usar_colunas, chunksize=qtd_it, index_col=False, encoding='iso-8859-1')
 
 
 def salvar_modelo(dataset: dict) -> str:

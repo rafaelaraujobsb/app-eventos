@@ -18,7 +18,8 @@ class Metricas(Resource):
         r = list()
         for id_modelo in modelos['ids_modelos']:
             resultado = db.get_document('modelo', {'_id': id_modelo}, {'_id': 0, 'metricas': 1, 'grupo': 1})[0]
-            resultado['metricas'] = resultado['metricas']['macro avg']
+            # resultado['metricas'] = resultado['metricas']['macro avg']
+            resultado['metricas'] = resultado['metricas']
             r.append(resultado)
 
         return Resposta.retorno(r)

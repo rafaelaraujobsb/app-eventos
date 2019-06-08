@@ -1,5 +1,8 @@
 from pymongo import MongoClient
 
+from app.config import DATABASE
+
+
 class ModDatabase():
     """ 
     Módulo mongo
@@ -136,4 +139,4 @@ class ModDatabase():
 
 class Database(ModDatabase):
     def __init__(self):
-        super().__init__('pi2_prod', host='localhost')
+        super().__init__(DATABASE, host='localhost')

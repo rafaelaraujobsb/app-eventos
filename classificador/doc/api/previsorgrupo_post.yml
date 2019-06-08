@@ -9,7 +9,11 @@ parameters:
     schema:
       required:
         - interesses
+        - cod_usuario
       properties: 
+        cod_usuario:
+          type: string
+          description: Código do usuário no banco de dados
         interesses: 
           type: array
           items:
