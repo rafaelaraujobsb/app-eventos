@@ -168,15 +168,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void cadastrar(View view){
-        ArrayList<Interesses> interessesSelecionados = new ArrayList<>();
-        for(Integer i = 0; i < userItems.size(); i++) {
-            interessesSelecionados.add(lstInteresses.get(userItems.get(i)));
-        }
-
-        String url = "http://35.199.125.165:1346/api/sugestao-grupo";
-        ServicoTask servicoTask = new ServicoTask(this, url, view, 0, interessesSelecionados);
-        servicoTask.execute();
-
+        final View v = view;
         auth.createUserWithEmailAndPassword(
                 perfil.getEmail(),
                 perfil.getSenha()
@@ -186,7 +178,15 @@ public class CadastroActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //TODO Validar todas possibilidades de erro no cadastro
                         if(task.isSuccessful()){
-                            insereUsuario(perfil);
+                            String userId = insereUsuario(perfil);
+                            ArrayList<Interesses> interessesSelecionados = new ArrayList<>();
+                            for(Integer i = 0; i < userItems.size(); i++) {
+                                interessesSelecionados.add(lstInteresses.get(userItems.get(i)));
+                            }
+
+                            String url = "http://35.199.125.165:1346/api/sugestao-grupo";
+                            ServicoTask servicoTask = new ServicoTask(CadastroActivity.this, url, v, userId, interessesSelecionados);
+                            servicoTask.execute();
                         }else{
                             String erroExcecao = "";
                             try{
@@ -207,15 +207,17 @@ public class CadastroActivity extends AppCompatActivity {
         );
     }
 
-    private void insereUsuario(Perfil p){
+    private String insereUsuario(Perfil p){
         try {
             reference = FirebaseDatabase.getInstance().getReference().child("Usuarios");
-            reference.push().setValue(p);
+            String chave = reference.push().getKey();
+            reference.child(chave).setValue(p);
             Toast.makeText(CadastroActivity.this, "Usuário cadastrado com sucesso!", Toast.LENGTH_LONG).show();
             finish();
-
+            return chave;
         }catch (Exception e){
             Toast.makeText(CadastroActivity.this, "Erro ao gravar usuário!", Toast.LENGTH_LONG).show();
         }
+        return null;
     }
 }

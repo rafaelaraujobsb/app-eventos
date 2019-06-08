@@ -20,13 +20,10 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
     private ProgressDialog progressDialog;
     private String resultadoAPI;
     private String linkRequestAPI;
-    private Integer idUsuario;
+    private String idUsuario;
     private List<Interesses> interesses;
 
-    public ServicoTask(Context ctx, String linkAPI, View view, Integer idUsuario, List<Interesses> interesses) {
-        for(Interesses interesse : interesses) {
-            System.out.println(interesse);
-        }
+    public ServicoTask(Context ctx, String linkAPI, View view, String idUsuario, List<Interesses> interesses) {
         this.httpContext = ctx;
         this.linkRequestAPI = linkAPI;
         this.view = view;
@@ -54,7 +51,7 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
             // Criar o objeto JSON para enviar por POST
             JSONObject parametrosPost = new JSONObject();
             JSONArray jsonArray = new JSONArray();
-            parametrosPost.put("id_usuario", idUsuario);
+            parametrosPost.put("cod_usuario", idUsuario);
             for(int i = 0; i < this.interesses.size(); i++) {
                 jsonArray.put(this.interesses.get(i).getName());
             }
