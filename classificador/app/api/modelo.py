@@ -18,7 +18,7 @@ class Previsor(Resource):
         if not json:
             logger.debug(request.headers)
             return Resposta.nao_aceito('Envie um JSON!')
-        elif json.get('cod_usuario', None) and type(json.get('interesses', None)) == list:
+        elif type(json.get('cod_usuario', None)) == str and type(json.get('interesses', None)) == list:
             logger.debug(f'ID: {json["cod_usuario"]}')
             return Resposta.retorno(previsor(json['interesses']))
         else:
