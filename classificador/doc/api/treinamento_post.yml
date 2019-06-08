@@ -1,0 +1,30 @@
+Endpoint para treinar o classificador
+---
+tags:
+  - Treinamento
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      required:
+        - senha
+      properties:
+        senha: 
+          type: string
+responses:
+  200:
+    examples:
+      resposta: {
+        "status": 200,
+        "mensagem": Treinamento realizado!.
+      }
+
+  500:
+    description: Erro Interno
+    examples:
+      resposta: {
+        "status": 500,
+        "mensagem": Erro Interno.
+      }
+      
