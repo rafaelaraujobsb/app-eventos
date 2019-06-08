@@ -4,7 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,24 +23,22 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
     private ProgressDialog progressDialog;
     private String resultadoAPI;
     private String linkRequestAPI;
-    private Integer idUsuario;
+    private String idUsuario;
     private List<Interesses> interesses;
+    private CadastroActivity cadastroActivity = new CadastroActivity();
 
-    public ServicoTask(Context ctx, String linkAPI, View view, Integer idUsuario, List<Interesses> interesses) {
-        for(Interesses interesse : interesses) {
-            System.out.println(interesse);
-        }
+    public ServicoTask(Context ctx, String linkAPI, View view, String idUsuario, List<Interesses> interesses) {
         this.httpContext = ctx;
         this.linkRequestAPI = linkAPI;
         this.view = view;
-        this.idUsuario = idUsuario;
         this.interesses = interesses;
+        this.idUsuario = idUsuario;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = ProgressDialog.show(httpContext, "Processando a Solicitação", "Por favor aguarde");
+        progressDialog = ProgressDialog.show(httpContext, "Estamos preparando a sua conta.", "Por favor aguarde.");
     }
 
     @Override

@@ -100,7 +100,6 @@ public class CriarEventoFragment extends Fragment {
         });
     }
 
-
     private void updateCategoria(View view) {
         spinner = view.findViewById(R.id.spnCategoria);
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categorias){
@@ -199,22 +198,6 @@ public class CriarEventoFragment extends Fragment {
         evento.setLatitude(latitude);
         evento.setLongitude(longitude);
 
-//        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-//            @Override
-//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-//                Calendar calendario = Calendar.getInstance();
-//                calendario.set(Calendar.YEAR, year);
-//                calendario.set(Calendar.MONTH, month);
-//                calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//
-//                SimpleDateFormat dateFormat = new SimpleDateFormat(calendario.getTime(), "dd/MM/yyyy");
-//                String selectedDate = dateFormat.format(new Date(year, month, dayOfMonth));
-//
-//            }
-//        });
-        //Calendar date = Calendar.getInstance();
-        //String selectedDate = dateFormat.format(new Date(calendario.getDate()));
-        //evento.setData(selectedDate);
         return evento;
     }
 
