@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import br.com.catlangos.eventando.Mapa;
-import br.com.catlangos.eventando.MapsActivity;
+import br.com.catlangos.eventando.MapsBuscarEvento;
 import br.com.catlangos.eventando.R;
 
 public class BuscarEventoFragment extends Fragment {
@@ -41,7 +40,7 @@ public class BuscarEventoFragment extends Fragment {
         btnTodos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), MapsActivity.class);
+                Intent intent = new Intent(requireActivity(), MapsBuscarEvento.class);
                 startActivity(intent);
             }
         });

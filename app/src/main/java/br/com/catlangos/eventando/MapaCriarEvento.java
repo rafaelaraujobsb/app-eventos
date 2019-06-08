@@ -1,13 +1,20 @@
 package br.com.catlangos.eventando;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,7 +32,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import java.util.Arrays;
 import java.util.List;
 
-public class Mapa extends FragmentActivity implements OnMapReadyCallback {
+public class MapaCriarEvento extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private PlacesClient placesClient;
@@ -39,12 +46,15 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private Geocoder geocoder;
     private List<Address> enderecos;
     private Button btnConfirmar;
+    private LocationManager locationManager;
 
     public static String LATITUDE = "latitude";
     public static String LONGITUDE = "longitude";
     public final static String BUSCAR = "BUSCAR";
     public final static String CRIAR = "CRIAR";
     public final static String TIPO = "TIPO";
+
+    public final static int MAP_PERMISSION = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +64,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapa);
         mapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -61,13 +72,18 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         btnConfirmar = findViewById(R.id.btnSelecionarLocal);
         mMap = googleMap;
 
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MAP_PERMISSION);
+        }else{
+            getLastLocation();
+        }
+
         inicializaPlaces();
         setUpPlaceAutoComplete();
         configurarBtnLocal();
-        LatLng iesb = new LatLng(-15.8349281, -47.9128294);
-        mMap.addMarker(new MarkerOptions().position(iesb).title("Marcador IESB").draggable(true));
-        setLatLngSelecionado(iesb);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iesb, 15));
+
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
@@ -106,17 +122,17 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     mMap.addMarker(new MarkerOptions().position(latLng).title(place.getName()));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                     setLatLngSelecionado(latLng);
-                    Toast.makeText(Mapa.this, "" + place.getName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MapaCriarEvento.this, "" + place.getName(), Toast.LENGTH_LONG).show();
                 } catch (NullPointerException e) {
-                    Toast.makeText(Mapa.this, "Local não encontrado no mapa", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MapaCriarEvento.this, "Local não encontrado no mapa", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
-                    Toast.makeText(Mapa.this, "Erro interno", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MapaCriarEvento.this, "Erro interno", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onError(@NonNull Status status) {
-                Toast.makeText(Mapa.this, "" + status.getStatusMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(MapaCriarEvento.this, "" + status.getStatusMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -126,6 +142,25 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             Places.initialize(this, getString(R.string.google_maps_key));
         }
         placesClient = Places.createClient(this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == MAP_PERMISSION){
+            if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getLastLocation();
+            }else{
+                Toast.makeText(MapaCriarEvento.this, "É necessário permitir a localização para selecionar local", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void getLastLocation(){
+        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+
     }
 
     public LatLng getLatLngSelecionado() {

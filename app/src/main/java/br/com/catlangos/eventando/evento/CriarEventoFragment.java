@@ -12,7 +12,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import br.com.catlangos.eventando.Mapa;
+import br.com.catlangos.eventando.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -137,8 +137,8 @@ public class CriarEventoFragment extends Fragment {
         btnAdicionarLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Mapa.class);
-                intent.putExtra(Mapa.TIPO, Mapa.CRIAR);
+                Intent intent = new Intent(getActivity(), MapaCriarEvento.class);
+                intent.putExtra(MapaCriarEvento.TIPO, MapaCriarEvento.CRIAR);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -219,8 +219,8 @@ public class CriarEventoFragment extends Fragment {
             if(resultCode == RESULT_OK){
                 try{
                     //TODO MELHORAR ARMAZENAMENTO DE LOCALIZACAO
-                    latitude = (Double) data.getExtras().get(Mapa.LATITUDE);
-                    longitude = (Double) data.getExtras().get(Mapa.LONGITUDE);
+                    latitude = (Double) data.getExtras().get(MapaCriarEvento.LATITUDE);
+                    longitude = (Double) data.getExtras().get(MapaCriarEvento.LONGITUDE);
 
                     Geocoder geocoder = new Geocoder(requireContext());
                     List<Address> enderecos = geocoder.getFromLocation(latitude, longitude, 1);
