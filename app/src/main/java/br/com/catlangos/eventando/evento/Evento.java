@@ -1,6 +1,8 @@
 package br.com.catlangos.eventando.evento;
 
-public class Evento {
+import java.io.Serializable;
+
+public class Evento implements Serializable {
 
     private String nome;
     private String cep;
@@ -14,6 +16,7 @@ public class Evento {
     private String data;
     private Double latitude;
     private Double longitude;
+    public final static String EVENTO = "evento";
 
     public Double getLatitude() {
         return latitude;

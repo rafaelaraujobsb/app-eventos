@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,14 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import br.com.catlangos.eventando.Mapa;
+import br.com.catlangos.eventando.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
-import br.com.catlangos.eventando.login.CadastroActivity;
-import br.com.catlangos.eventando.login.Perfil;
 import br.com.catlangos.eventando.utils.Utils;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -51,17 +46,9 @@ public class CriarEventoFragment extends Fragment {
     private int REQUEST_CODE = 1;
     private List<String> categorias = new ArrayList<>();
 
-    public CriarEventoFragment(){
-        // Required empty public constructor
-    }
-
-    public static CriarEventoFragment newInstance() {
-        return new CriarEventoFragment();
-    }
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.criar_evento_fragment, container, false);
     }
 
@@ -150,7 +137,8 @@ public class CriarEventoFragment extends Fragment {
         btnAdicionarLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Mapa.class);
+                Intent intent = new Intent(getActivity(), MapaCriarEvento.class);
+                intent.putExtra(MapaCriarEvento.TIPO, MapaCriarEvento.CRIAR);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -172,8 +160,18 @@ public class CriarEventoFragment extends Fragment {
 
     private void cadastrar(Evento evento) {
         try {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Eventos");
-            reference.push().setValue(evento);
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Eventos");
+            final String chave = reference.push().getKey();
+            reference.child(chave).setValue(evento).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    final DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("evento_user");
+                    EventoUser eventoUser = new EventoUser();
+                    eventoUser.setUsuario(FirebaseAuth.getInstance().getUid());
+                    eventoUser.setEvento(chave);
+                    reference2.push().setValue(eventoUser);
+                }
+            });
             Toast.makeText(requireContext(), "Evento criado com sucesso!", Toast.LENGTH_LONG).show();
             getActivity().finish();
         }catch (Exception e){
@@ -221,8 +219,8 @@ public class CriarEventoFragment extends Fragment {
             if(resultCode == RESULT_OK){
                 try{
                     //TODO MELHORAR ARMAZENAMENTO DE LOCALIZACAO
-                    latitude = (Double) data.getExtras().get(Mapa.LATITUDE);
-                    longitude = (Double) data.getExtras().get(Mapa.LONGITUDE);
+                    latitude = (Double) data.getExtras().get(MapaCriarEvento.LATITUDE);
+                    longitude = (Double) data.getExtras().get(MapaCriarEvento.LONGITUDE);
 
                     Geocoder geocoder = new Geocoder(requireContext());
                     List<Address> enderecos = geocoder.getFromLocation(latitude, longitude, 1);

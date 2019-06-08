@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mapa"
-        tools:context=".Mapa"
+        tools:context=".MapaCriarEvento"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
     <fragment

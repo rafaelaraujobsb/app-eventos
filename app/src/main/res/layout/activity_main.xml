@@ -66,11 +66,6 @@
                     android:gravity="center"
                     android:text="Esqueceu sua Senha?"/>
 
-
-            <Button
-                    android:text="Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/btnTeste"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

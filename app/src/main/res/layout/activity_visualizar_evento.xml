@@ -17,7 +17,7 @@
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:orientation="vertical">
 
             <TextView
@@ -27,7 +27,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="44dp"
                     android:gravity="center_horizontal"
-                    android:text="Crie seu evento"
+                    android:text="Evento encontrado"
                     android:textColor="#fff"
                     android:textSize="26sp"
                     android:textStyle="bold"/>
@@ -50,82 +50,140 @@
                         android:orientation="vertical"
                         android:paddingTop="30dp">
 
-                    <EditText
-                            android:id="@+id/txtNome"
+                    <TextView
+                            android:id="@+id/txHintNome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableTint="#FF4081"
                             android:singleLine="true"
                             android:hint="@string/nome_do_evento"
-                            android:inputType="textPersonName"/>
+                            android:inputType="textPersonName" android:textSize="18sp"/>
 
-                    <EditText
-                            android:id="@+id/txtCep"
+                    <TextView
+                            android:id="@+id/txtNome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="#FF4081"
+                            android:singleLine="true"
+                            android:hint=""
+                            android:inputType="textPersonName" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintCep"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/CEP"
-                            android:inputType="numberDecimal"/>
+                            android:inputType="numberDecimal" android:textSize="18sp"/>
 
-                    <EditText
-                            android:id="@+id/txtEstado"
+                    <TextView
+                            android:id="@+id/txtCep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="numberDecimal" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintEstado"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/estado"
-                            android:inputType="textAutoComplete"/>
+                            android:inputType="textAutoComplete" android:textSize="18sp"/>
 
-                    <EditText
-                            android:id="@+id/txtCidade"
+                    <TextView
+                            android:id="@+id/txtEstado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="textAutoComplete" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintCidade"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/cidade"
-                            android:inputType="text|textMultiLine"/>
+                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
 
-                    <EditText
-                            android:id="@+id/txtBairro"
+                    <TextView
+                            android:id="@+id/txtCidade"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintBairro"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/bairro"
-                            android:inputType="text|textMultiLine"/>
+                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
 
-                    <EditText
-                            android:id="@+id/txtRua"
+                    <TextView
+                            android:id="@+id/txtBairro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintRua"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/rua"
-                            android:inputType="text|textMultiLine"/>
+                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
 
-                    <EditText
-                            android:id="@+id/txtComplemento"
+                    <TextView
+                            android:id="@+id/txtRua"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintComplemento"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/complemento"
-                            android:inputType="text|textMultiLine"/>
+                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
 
-                    <Button
-                            android:text="Adicionar Local"
+                    <TextView
+                            android:id="@+id/txtComplemento"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/btnLocal"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-                    <EditText
-                            android:id="@+id/txtDescricao"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintDescricao"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -134,10 +192,34 @@
                             android:inputType="text|textMultiLine"
                             android:textSize="18sp"/>
 
-                    <Spinner
+                    <TextView
+                            android:id="@+id/txtDescricao"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/spnCategoria"/>
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintCategoria"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="#FF4081"
+                            android:hint="@string/categoria"
+                            android:inputType="text|textMultiLine"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/txtCategoria"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
+
                     <!--<TextView
                             android:text="Data"
                             android:layout_width="match_parent"
@@ -149,36 +231,6 @@
                             android:layoutMode="clipBounds"
                             android:layout_height="wrap_content"
                             android:id="@+id/calendario"/>-->
-                    <RadioGroup
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:orientation="horizontal"
-                            android:paddingTop="10px"
-                            android:paddingBottom="10px">
-
-                        <RadioButton
-                                android:text="Publico"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/radioPublico"
-                                android:layout_weight="1"/>
-
-                        <RadioButton
-                                android:text="Privado"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/radioPrivado"
-                                android:layout_weight="1"/>
-                    </RadioGroup>
-
-                    <Button
-                            android:id="@+id/btnCriar"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="22dp"
-                            android:background="#d67601"
-                            android:text="Criar"
-                            android:textAllCaps="false"
-                            android:textColor="#fff"
-                            android:textSize="18sp"/>
 
                 </LinearLayout>
             </RelativeLayout>
