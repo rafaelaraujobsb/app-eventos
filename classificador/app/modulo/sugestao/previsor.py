@@ -53,7 +53,7 @@ def previsor(interesses):
     return grupos
 
 
-# carregar_ram()
+carregar_ram()
 
 
 if __name__ == '__main__':
