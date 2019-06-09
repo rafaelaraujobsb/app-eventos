@@ -17,11 +17,11 @@ config = {
 }
 
 
-def cadastrar_interesses(cod_usuario, interesses):
+def cadastrar_categorias(cod_usuario, categorias):
     firebase = pyrebase.initialize_app(config)
     db = firebase.database()
     usuarios = db.child("Usuarios").get().val()
-    usuarios[cod_usuario]['interesses'] = interesses
+    usuarios[cod_usuario]['categorias'] = categorias
 
     data = {
         f'Usuarios/{cod_usuario}': usuarios[cod_usuario]
