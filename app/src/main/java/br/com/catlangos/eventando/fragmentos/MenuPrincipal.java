@@ -1,5 +1,6 @@
 package br.com.catlangos.eventando.fragmentos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.evento.Evento;
-import br.com.catlangos.eventando.login.ServicoTask;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import br.com.catlangos.eventando.evento.VisualizarEventoActivity;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuPrincipal extends Fragment {
+public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoClickListener {
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
@@ -41,7 +38,7 @@ public class MenuPrincipal extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        final MeuViewHolder.OnEventoClickListener ctx = this;
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -54,7 +51,7 @@ public class MenuPrincipal extends Fragment {
                 RecyclerView recyclerView = requireActivity().findViewById(R.id.recyclerViewMenuPrincipal);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recyclerView.setAdapter(new MeuAdaptador(eventos));
+                recyclerView.setAdapter(new MeuAdaptador(eventos, ctx));
             }
 
             @Override
@@ -62,5 +59,13 @@ public class MenuPrincipal extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onEventoClick(int position) {
+        Evento evento = eventos.get(position);
+        Intent intent = new Intent(requireActivity(), VisualizarEventoActivity.class);
+        intent.putExtra("evento", evento);
+        startActivity(intent);
     }
 }

@@ -14,16 +14,18 @@ public class MeuAdaptador extends RecyclerView.Adapter<MeuViewHolder> {
 
     private List<Evento> eventos;
     private HashMap<Integer, Evento> mapEvento = new HashMap<>();
+    private MeuViewHolder.OnEventoClickListener onEventoClickListener;
 
-    public MeuAdaptador(List<Evento> eventos) {
+    public MeuAdaptador(List<Evento> eventos, MeuViewHolder.OnEventoClickListener onEventoClickListener) {
         this.eventos = eventos;
+        this.onEventoClickListener = onEventoClickListener;
     }
 
     @Override
     public MeuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.meus_eventos, parent,false);
 
-        MeuViewHolder viewHolder = new MeuViewHolder(v);
+        MeuViewHolder viewHolder = new MeuViewHolder(v, onEventoClickListener);
 
         return viewHolder;
     }
