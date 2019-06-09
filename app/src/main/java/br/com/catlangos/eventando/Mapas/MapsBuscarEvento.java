@@ -1,4 +1,4 @@
-package br.com.catlangos.eventando;
+package br.com.catlangos.eventando.Mapas;
 
 import android.Manifest;
 import android.content.Context;
@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 
+import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.evento.Evento;
 import br.com.catlangos.eventando.evento.VisualizarEventoActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,19 +44,30 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("/Eventos");
 
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MAP_PERMISSION);
+        }else{
+            getLastLocation();
+        }
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                LatLng latLng = new LatLng(-15.7930022, -47.9226039);
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
                 for(DataSnapshot ref : dataSnapshot.getChildren()){
                     Evento evento = ref.getValue(Evento.class);
                     if(evento != null){
-                        latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
+                        LatLng latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
                         Marker marcador = mMap.addMarker(new MarkerOptions().position(latLng));
                         eventos.put(marcador, evento);
                     }
@@ -67,20 +79,6 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
 
             }
         });
-
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MAP_PERMISSION);
-        }else{
-            getLastLocation();
-        }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -107,9 +105,13 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
     }
 
     private void getLastLocation(){
-        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
-
+        try{
+            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+        }catch(Exception e){
+            LatLng actualLocation = new LatLng(-15.7896196,-47.8911385);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+        }
     }
 }

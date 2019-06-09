@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import br.com.catlangos.eventando.MapsBuscarEvento;
+import br.com.catlangos.eventando.Mapas.MapsBuscarEvento;
 import br.com.catlangos.eventando.R;
 
 public class BuscarEventoFragment extends Fragment {

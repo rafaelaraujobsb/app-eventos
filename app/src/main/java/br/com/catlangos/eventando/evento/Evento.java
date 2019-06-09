@@ -16,7 +16,9 @@ public class Evento implements Serializable {
     private String data;
     private Double latitude;
     private Double longitude;
+
     public final static String EVENTO = "evento";
+
 
     public Double getLatitude() {
         return latitude;

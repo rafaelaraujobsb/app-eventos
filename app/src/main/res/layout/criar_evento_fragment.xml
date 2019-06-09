@@ -2,7 +2,9 @@
 
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#5fb0c9"
@@ -18,7 +20,10 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:orientation="vertical">
+                      android:orientation="vertical"
+                      android:descendantFocusability="beforeDescendants"
+                      android:focusableInTouchMode="true"
+                      android:touchscreenBlocksFocus="true">
 
             <TextView
                     android:id="@+id/txtLogin"
@@ -138,17 +143,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/spnCategoria"/>
-                    <!--<TextView
-                            android:text="Data"
+                    <TextView
+                            android:text="Horário"
                             android:layout_width="match_parent"
-                            android:layout_height="37dp" android:id="@+id/txtData" android:textSize="18sp"
-                            android:paddingTop="10dp"/>-->
+                            android:layout_height="37dp"
+                            android:id="@+id/txtData"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
 
-                    <!--<CalendarView
+                    <CalendarView
                             android:layout_width="match_parent"
                             android:layoutMode="clipBounds"
                             android:layout_height="wrap_content"
-                            android:id="@+id/calendario"/>-->
+                            android:id="@+id/calendario"/>
+
                     <RadioGroup
                             android:layout_width="match_parent"
                             android:layout_height="37dp"

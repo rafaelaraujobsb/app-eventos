@@ -1,5 +1,7 @@
 package br.com.catlangos.eventando.evento;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
@@ -8,11 +10,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import br.com.catlangos.eventando.MapaCriarEvento;
+import br.com.catlangos.eventando.Mapas.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +31,7 @@ public class CriarEventoFragment extends Fragment {
 
     private FirebaseDatabase fireBaseDatabase;
     private DatabaseReference dataBase;
+    private TextView txtData;
     private Button btnAdicionarLocal;
     private Button btnCriarEvento;
     private EditText nome;
@@ -45,6 +49,8 @@ public class CriarEventoFragment extends Fragment {
     private CalendarView calendario;
     private int REQUEST_CODE = 1;
     private List<String> categorias = new ArrayList<>();
+    private TimePickerDialog timePickerDialog;
+    private DatePickerDialog datePickerDialog;
 
     @Nullable
     @Override
@@ -56,6 +62,7 @@ public class CriarEventoFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        view.findViewById(R.id.mainLayout).requestFocus();
         fireBaseDatabase = FirebaseDatabase.getInstance();
         //Localiza o nó no banco de dados do firebase e guarda sua referência
         dataBase = fireBaseDatabase.getReference("/categorias");
@@ -69,6 +76,20 @@ public class CriarEventoFragment extends Fragment {
         complemento = view.findViewById(R.id.txtComplemento);
         btnCriarEvento = view.findViewById(R.id.btnCriar);
         descricao = view.findViewById(R.id.txtDescricao);
+        txtData = view.findViewById(R.id.txtData);
+
+        txtData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        txtData.setText("Horário: " + hourOfDay + ":" + minute);
+                    }
+                }, 0, 0, false);
+                timePickerDialog.show();
+            }
+        });
 
         configurarBtnCriarEvento();
         configurarBtnAdicionarLocal(view);
@@ -192,6 +213,7 @@ public class CriarEventoFragment extends Fragment {
         evento.setRua(Utils.Companion.editTextToString(rua));
         evento.setLatitude(latitude);
         evento.setLongitude(longitude);
+
 
 //        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 //            @Override
