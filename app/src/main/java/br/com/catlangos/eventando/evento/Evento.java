@@ -16,9 +16,25 @@ public class Evento implements Serializable {
     private String data;
     private Double latitude;
     private Double longitude;
-
+    private String horarioInicio;
+    private String horarioTermino;
     public final static String EVENTO = "evento";
 
+    public String getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(String horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public String getHorarioTermino() {
+        return horarioTermino;
+    }
+
+    public void setHorarioTermino(String horarioTermino) {
+        this.horarioTermino = horarioTermino;
+    }
 
     public Double getLatitude() {
         return latitude;

@@ -143,11 +143,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/spnCategoria"/>
+
                     <TextView
-                            android:text="Horário"
+                            android:text="Data"
                             android:layout_width="match_parent"
                             android:layout_height="37dp"
-                            android:id="@+id/txtData"
                             android:textSize="18sp"
                             android:paddingTop="15dp"/>
 
@@ -157,15 +157,30 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/calendario"/>
 
+                    <TextView
+                            android:text="Horário de início"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp"
+                            android:id="@+id/txtHorarioInicio"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
+
+                    <TextView
+                            android:text="Horário de término"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp"
+                            android:id="@+id/txtHorarioTermino"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
+
                     <RadioGroup
                             android:layout_width="match_parent"
                             android:layout_height="37dp"
                             android:orientation="horizontal"
-                            android:paddingTop="10px"
-                            android:paddingBottom="10px">
+                            android:paddingTop="15dp">
 
                         <RadioButton
-                                android:text="Publico"
+                                android:text="Público"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/radioPublico"
                                 android:layout_weight="1"/>
