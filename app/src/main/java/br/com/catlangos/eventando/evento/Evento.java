@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Evento implements Serializable {
 
+    private String id;
     private String nome;
     private String cep;
     private String estado;
@@ -122,5 +123,13 @@ public class Evento implements Serializable {
 
     public void setPrivado(Boolean privado) {
         this.privado = privado;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

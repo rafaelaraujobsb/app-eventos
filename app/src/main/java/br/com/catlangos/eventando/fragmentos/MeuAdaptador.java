@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.evento.Evento;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MeuAdaptador extends RecyclerView.Adapter<MeuViewHolder> {
 
     private List<Evento> eventos;
+    private HashMap<Integer, Evento> mapEvento = new HashMap<>();
 
     public MeuAdaptador(List<Evento> eventos) {
         this.eventos = eventos;
@@ -30,6 +32,9 @@ public class MeuAdaptador extends RecyclerView.Adapter<MeuViewHolder> {
     public void onBindViewHolder(MeuViewHolder viewHolder, int position) {
         Evento evento = eventos.get(position);
         viewHolder.txtNomeEvento.setText(evento.getNome());
+        viewHolder.dataEvento.setText(evento.getData());
+        viewHolder.categoriaEvento.setText(evento.getCategoria());
+        mapEvento.put(position, evento);
     }
 
     @Override
