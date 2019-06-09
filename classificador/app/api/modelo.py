@@ -6,8 +6,9 @@ from flasgger import swag_from
 from flask_restful import Resource
 
 from app.modulo.resposta_api import Resposta
-from app.modulo.treinamento.gerar_modelo import gerar_modelo
 from app.modulo.sugestao.previsor import previsor
+from app.servico.firebase import cadastrar_interesses
+from app.modulo.treinamento.gerar_modelo import gerar_modelo
 
 
 class Previsor(Resource):
@@ -19,8 +20,10 @@ class Previsor(Resource):
             logger.debug(request.headers)
             return Resposta.nao_aceito('Envie um JSON!')
         elif type(json.get('cod_usuario', None)) == str and type(json.get('interesses', None)) == list:
-            logger.debug(f'ID: {json["cod_usuario"]}')
-            return Resposta.retorno(previsor(json['interesses']))
+            interesses = previsor(json['interesses'])
+            cadastrar_interesses(json["cod_usuario"], interesses)
+            
+            return Resposta.retorno(interesses)
         else:
             return Resposta.nao_aceito('JSON inválido!')
 
