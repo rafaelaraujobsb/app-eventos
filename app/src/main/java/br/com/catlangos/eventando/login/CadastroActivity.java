@@ -154,6 +154,10 @@ public class CadastroActivity extends AppCompatActivity {
                         Toast.makeText(CadastroActivity.this, "Ao menos 5 categorias de interesse devem ser selecionadas", Toast.LENGTH_LONG).show();
                         return;
                     }
+                    if(!Utils.Companion.isCPF(numCpf.getText().toString())) {
+                        Toast.makeText(CadastroActivity.this, "O CPF informado é inválido. Favor digitar novamente.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     if(Utils.Companion.isEqualsEditText(txtEmail, txtConfirmarEmail)){
                         perfil = new Perfil();
                         perfil.setEmail(Utils.Companion.editTextToString(txtEmail));
