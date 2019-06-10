@@ -1,3 +1,4 @@
+from time import sleep
 from datetime import datetime
 
 from loguru import logger
@@ -5,9 +6,9 @@ from flask import request
 from flasgger import swag_from
 from flask_restful import Resource
 
+from app.servico.firebase import cadastrar
 from app.modulo.resposta_api import Resposta
 from app.modulo.sugestao.previsor import previsor
-from app.servico.firebase import cadastrar_categorias
 from app.modulo.treinamento.gerar_modelo import gerar_modelo
 
 
@@ -21,7 +22,8 @@ class Previsor(Resource):
             return Resposta.nao_aceito('Envie um JSON!')
         elif type(json.get('cod_usuario', None)) == str and type(json.get('interesses', None)) == list:
             categorias = previsor(json['interesses'])
-            cadastrar_categorias(json["cod_usuario"], categorias)
+            sleep(5)
+            cadastrar(json["cod_usuario"], 'categorias', categorias)
             
             return Resposta.retorno(categorias)
         else:

@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-from app.config import DATABASE
+from app.config import DATABASE, HOST_DB
 
 
 class ModDatabase():
@@ -139,4 +139,4 @@ class ModDatabase():
 
 class Database(ModDatabase):
     def __init__(self):
-        super().__init__(DATABASE, host='localhost')
+        super().__init__(DATABASE, host=HOST_DB)

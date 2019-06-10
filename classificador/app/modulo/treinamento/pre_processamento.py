@@ -8,6 +8,17 @@ from app.servico.database import Database
 from app.servico.utils import ler_csv
 
 
+INTERESSES = {
+    'art', 'social', 'outdoors', 'dancing', 'technology', 'social networking',
+    'photography', 'lgbt', 'sports and recreation', 'language & culture', 'board games', 'music'
+}
+
+CATEGORIAS = {
+    'tech', 'socializing', 'language', 'outdoors-adventure', 'career-business', 'sports-recreation',
+    'photography', 'parents-family', 'games', 'music', 'dancing', 'lgbt', 'lifestyle', 'arts-culture'
+}
+
+
 def interesse_membro(id: str, df_interesses: DataFrame) -> list:
     """
     Agrupa os intereses por id.
@@ -33,8 +44,9 @@ def info_membros(df_membros: DataFrame, df_interesses: DataFrame, qtd_membros: i
     :return: membros e interesses unicos
     :rtype: tuple
     """
+    global INTERESSES, CATEGORIAS
+    
     COLUNAS = ['member_id', 'group_id']
-    SEPARADOR = re.compile(r'[&,]')
     membros = list()
     controlador = defaultdict(int)
 
@@ -47,16 +59,16 @@ def info_membros(df_membros: DataFrame, df_interesses: DataFrame, qtd_membros: i
                 id_membro, id_grupo = linha
                 info_grupo = db.get_document('grupos', {'_id': int(id_grupo)}, {'nota': 0})[0]
 
-                if controlador[info_grupo['categoria']] == qtd_membros:
+                if controlador[info_grupo['categoria']] == qtd_membros or info_grupo['categoria'] not in CATEGORIAS:
                     continue
 
                 mbr_interesses = interesse_membro(id_membro, df_interesses)
                 interesses_filtrado = set()
                 if any(mbr_interesses):
                     for interesse in mbr_interesses:
-                        for e in SEPARADOR.split(interesse):
+                        for e in interesse.split(','):
                             e = e.strip().lower()
-                            if e:
+                            if e and e in INTERESSES:
                                 interesses_filtrado.add(e)
 
                     membro = {

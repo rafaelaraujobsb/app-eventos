@@ -1,10 +1,13 @@
 # import sys
 # sys.path[0] = '/home/monopoly/Documents/pi2'
+from collections import defaultdict
 
 from loguru import logger
 
 from app.servico.database import Database
 from app.servico.utils import descompactar_modelo
+from app.servico.firebase import buscar_eventos, cadastrar
+from app.modulo.sugestao.grafo import Grafo, RelacoesPessoas
 
 
 LISTA_MODELOS = list()
@@ -51,6 +54,43 @@ def previsor(interesses):
             grupos.append(modelo[previsao])
 
     return grupos
+
+
+def sugestao_eventos():
+    logger.info("Executando Grafo")
+
+    grafo_eventos = Grafo()
+    eventos = buscar_eventos()
+
+    # busca os eventos passados
+    for evento in eventos[0]:
+        id_evento = evento['id']
+        for id_participante in evento['participantes']:
+            grafo_eventos.inserir(id_participante, id_evento)
+
+    # monta as ligações com os usuários
+    grafo_networking = RelacoesPessoas(grafo_eventos.grafo)
+    for es in eventos.values():
+        for evento in es:
+            for index, id1 in enumerate(evento['participantes']):
+                for id2 in evento['participantes'][index+1:]:
+                    grafo_networking.inserir(id1, id2)
+                    grafo_networking.inserir(id2, id1)
+
+    # armazena as recomendações
+    recomendacao = defaultdict(list)
+    relacoes = grafo_networking.buscar_relacoes()
+    for evento in eventos[1]:
+        id_evento = evento['id']
+        for id_participante in evento['participantes']:
+            for i in relacoes[id_participante]:
+                recomendacao[i].append(id_evento)
+
+    # salva no firebase
+    for id_usuario in recomendacao:
+        cadastrar(id_usuario, 'recomendacao', recomendacao[id_usuario])
+
+    logger.info("FIM Grafo")
 
 
 carregar_ram()

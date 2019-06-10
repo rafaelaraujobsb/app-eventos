@@ -3,6 +3,7 @@ import os
 
 LOCAL_DATASET = os.environ['LOCAL_DATASET']
 DATABASE = os.environ['DATABASE']
+HOST_DB = os.getenv('HOST_DB', 'localhost')
 
 # FIREBASE
 API_KEY = os.environ['API_KEY']
