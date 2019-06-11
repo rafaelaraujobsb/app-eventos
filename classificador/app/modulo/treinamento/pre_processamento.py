@@ -9,13 +9,13 @@ from app.servico.utils import ler_csv
 
 
 INTERESSES = {
-    'art', 'social', 'outdoors', 'dancing', 'technology', 'social networking',
-    'photography', 'lgbt', 'sports and recreation', 'language & culture', 'board games', 'music'
+    'art', 'social', 'outdoors', 'dancing', 'technology', 'social networking', 'writing', 'drinking',
+    'photography', 'lgbt', 'sports and recreation', 'language & culture', 'board games', 'music', 'gaming'
 }
 
 CATEGORIAS = {
-    'tech', 'socializing', 'language', 'outdoors-adventure', 'career-business', 'sports-recreation',
-    'photography', 'parents-family', 'games', 'music', 'dancing', 'lgbt', 'lifestyle', 'arts-culture'
+    'tech', 'socializing', 'language', 'career-business', 'sports-recreation',
+    'photography', 'education-learning', 'games', 'music', 'dancing', 'lgbt', 'lifestyle', 'arts-culture', 'shows'
 }
 
 
@@ -65,26 +65,28 @@ def info_membros(df_membros: DataFrame, df_interesses: DataFrame, qtd_membros: i
                 mbr_interesses = interesse_membro(id_membro, df_interesses)
                 interesses_filtrado = set()
                 if any(mbr_interesses):
+                    flag = False
                     for interesse in mbr_interesses:
                         for e in interesse.split(','):
                             e = e.strip().lower()
                             if e and e in INTERESSES:
+                                flag = True
                                 interesses_filtrado.add(e)
+                    if flag:
+                        membro = {
+                            'id_membro': id_membro,
+                            'categoria_grupo': info_grupo['categoria']
+                        }
 
-                    membro = {
-                        'id_membro': id_membro,
-                        'categoria_grupo': info_grupo['categoria']
-                    }
+                        for interesse in interesses_filtrado:
+                            membro[interesse] = 1
 
-                    for interesse in interesses_filtrado:
-                        membro[interesse] = 1
-
-                    membros.append(membro)
-                    controlador[info_grupo['categoria']] += 1
+                        membros.append(membro)
+                        controlador[info_grupo['categoria']] += 1
 
         if sum(controlador.values()) >= qtd_membros*33:
             break
-
+    
     return DataFrame(membros)
 
 
