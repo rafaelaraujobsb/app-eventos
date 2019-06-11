@@ -2,12 +2,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_height="match_parent"
-             android:layout_width="match_parent">
+             android:layout_width="match_parent"
+             android:descendantFocusability="beforeDescendants"
+             android:focusableInTouchMode="true">
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mapa"
-        tools:context=".MapaCriarEvento"
+        tools:context=".Mapas.MapaCriarEvento"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
     <fragment

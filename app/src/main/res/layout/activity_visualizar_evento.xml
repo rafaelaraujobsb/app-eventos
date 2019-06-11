@@ -170,7 +170,7 @@
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
-                            android:hint="@string/complemento"
+                            android:hint="@string/visualizar_complemento"
                             android:inputType="text|textMultiLine" android:textSize="18sp"/>
 
                     <TextView
@@ -180,7 +180,8 @@
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint=""
-                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
 
                     <TextView
                             android:id="@+id/txtHintDescricao"
