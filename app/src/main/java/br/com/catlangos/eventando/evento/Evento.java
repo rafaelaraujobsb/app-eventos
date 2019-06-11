@@ -1,6 +1,7 @@
 package br.com.catlangos.eventando.evento;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class Evento implements Serializable {
 
@@ -13,12 +14,22 @@ public class Evento implements Serializable {
     private String complemento;
     private String descricao;
     private String categoria;
-    private String data;
     private Double latitude;
     private Double longitude;
     private String horarioInicio;
     private String horarioTermino;
+    private String data;
     public final static String EVENTO = "evento";
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+
 
     public String getHorarioInicio() {
         return horarioInicio;
@@ -124,14 +135,6 @@ public class Evento implements Serializable {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public Boolean getPrivado() {

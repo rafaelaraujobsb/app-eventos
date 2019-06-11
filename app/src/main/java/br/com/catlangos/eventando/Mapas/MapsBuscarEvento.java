@@ -34,7 +34,9 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
     private HashMap<Marker, Evento> eventos = new HashMap<>();
     private LocationManager locationManager;
     public final static int MAP_PERMISSION = 1;
-
+    public final static String CODIGO_DE_BUSCA = "CODIGO_DE_BUSCA";
+    public final static String TODOS = "TODOS";
+    public final static String CATEGORIA = "CATEGORIA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +63,46 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
             getLastLocation();
         }
 
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ref : dataSnapshot.getChildren()){
-                    Evento evento = ref.getValue(Evento.class);
-                    if(evento != null){
-                        LatLng latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
-                        Marker marcador = mMap.addMarker(new MarkerOptions().position(latLng));
-                        eventos.put(marcador, evento);
+        String tipoDeBusca = getIntent().getStringExtra(CODIGO_DE_BUSCA);
+
+        switch (tipoDeBusca){
+            case TODOS:
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ref : dataSnapshot.getChildren()){
+                            Evento evento = ref.getValue(Evento.class);
+                            if(evento != null){
+                                LatLng latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
+                                Marker marcador = mMap.addMarker(new MarkerOptions().position(latLng));
+                                eventos.put(marcador, evento);
+                            }
+                        }
                     }
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                    }
+                });
+                break;
+
+            case CATEGORIA:
+                
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                break;
+
+        }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
