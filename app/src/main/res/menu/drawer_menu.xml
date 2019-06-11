@@ -15,15 +15,4 @@
               android:title="Buscar Evento"/>
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item android:id="@+id/nav_share"
-                  android:icon="@drawable/ic_share"
-                  android:title="Share"/>
-            <item android:id="@+id/nav_send"
-                  android:icon="@drawable/ic_send"
-                  android:title="Send"/>
-        </menu>
-    </item>
-
 </menu>

@@ -4,10 +4,21 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp">
 
+    <TextView
+            android:id="@+id/txtEventoSugerido"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Eventos Sugeridos"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewMenuPrincipal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEventoSugerido"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnCadastrarEvento"
