@@ -37,6 +37,7 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
     public final static String CODIGO_DE_BUSCA = "CODIGO_DE_BUSCA";
     public final static String TODOS = "TODOS";
     public final static String CATEGORIA = "CATEGORIA";
+    public final static String CATEGORIA_SELECIONADA = "CATEGORIA_SELECIONADA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +89,19 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
                 break;
 
             case CATEGORIA:
-                
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                String categoriaSelecionada = getIntent().getStringExtra(CATEGORIA_SELECIONADA);
+                Query query = reference.orderByChild("categoria").equalTo(categoriaSelecionada);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                        for(DataSnapshot ref : dataSnapshot.getChildren()){
+                            Evento evento = ref.getValue(Evento.class);
+                            if(evento != null){
+                                LatLng latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
+                                Marker marcador = mMap.addMarker(new MarkerOptions().position(latLng));
+                                eventos.put(marcador, evento);
+                            }
+                        }
                     }
 
                     @Override

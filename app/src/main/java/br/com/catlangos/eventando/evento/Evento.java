@@ -1,7 +1,6 @@
 package br.com.catlangos.eventando.evento;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 public class Evento implements Serializable {
 
@@ -28,8 +27,6 @@ public class Evento implements Serializable {
     public void setData(String data) {
         this.data = data;
     }
-
-
 
     public String getHorarioInicio() {
         return horarioInicio;
