@@ -24,8 +24,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnEntrar?.setOnClickListener { view -> eventoLogin(view) }
-        txtCadastrar?.setOnClickListener { view -> cadastrar(view) }
-        btnTeste?.setOnClickListener { view -> abrirCriarEvento(view) }
+        txtCadastrar?.setOnClickListener { cadastrar() }
         txtResetarSenha?.setOnClickListener { resetarSenha() }
     }
 
@@ -44,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
                     utils.apresentarMensagem(view, "Ops... Falha ao autenticar!")
                 }
             })
+        }else{
+            utils.apresentarMensagem(view, "Insira o e-mail e a senha")
         }
     }
 
@@ -52,17 +53,12 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun cadastrar(view: View){
+    private fun cadastrar(){
         intent = Intent(this, CadastroActivity::class.java)
         startActivity(intent)
     }
 
     private fun apresentarMensagem(view:View, message: String){
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
-    }
-
-    private fun abrirCriarEvento(view: View){
-        intent = Intent(this, CriarEventoActivity::class.java)
-        startActivity(intent)
     }
 }

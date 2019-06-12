@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#525252"
                 android:orientation="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true">
+                android:scrollbarAlwaysDrawVerticalTrack="true" android:layout_width="match_parent"
+                android:visibility="visible">
 
     <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="73dp"
+            android:layout_marginTop="22dp"
             android:gravity="center_horizontal"
-            android:text="Recuperação de senha"
+            android:text="Selecione o tipo de pesquisa"
             android:textColor="#fff"
             android:textSize="26sp"
-            android:textStyle="bold" android:layout_alignParentTop="true"/>
+            android:textStyle="bold"/>
 
     <RelativeLayout
             android:layout_width="fill_parent"
@@ -24,12 +24,11 @@
             android:layout_below="@+id/title"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="70dp"
             android:background="#fff"
             android:elevation="4dp"
             android:orientation="vertical"
             android:padding="20dp">
-
 
         <LinearLayout
                 android:layout_width="fill_parent"
@@ -37,26 +36,39 @@
                 android:orientation="vertical"
                 android:paddingTop="30dp">
 
-            <EditText
-                    android:id="@+id/txtEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTint="#FF4081"
-                    android:singleLine="true"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"/>
-            <!--android:enabled="false" -->
-
             <Button
-                    android:id="@+id/btnRedefinir"
+                    android:id="@+id/btnTodos"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="22dp"
                     android:background="#d67601"
-                    android:text="Redefinir a Senha"
+                    android:text="Todos"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
+
+            <Button
+                    android:id="@+id/btnCategoria"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="22dp"
+                    android:background="#d67601"
+                    android:text="Categoria"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
+
+            <Button
+                    android:id="@+id/btnAcontecendoAgora"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="22dp"
+                    android:background="#d67601"
+                    android:text="Acontecendo agora"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="18sp"/>
         </LinearLayout>
     </RelativeLayout>
+
 </RelativeLayout>

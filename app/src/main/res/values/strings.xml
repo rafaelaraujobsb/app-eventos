@@ -5,6 +5,7 @@
     <string name="estado">Estado</string>
     <string name="CEP">CEP</string>
     <string name="complemento">Complemento (Opcional)</string>
+    <string name="visualizar_complemento">Complemento</string>
     <string name="bairro">Bairro</string>
     <string name="rua">Rua/Avenida</string>
     <string name="nome_do_evento">Nome do evento</string>
@@ -16,4 +17,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Abrir</string>
     <string name="navigation_drawer_close">Fechar</string>
+    <string name="selecionar_interesses">Selecionar Interesses</string>
+    <string name="data_de_nasicmento">Data de nasicmento</string>
+    <string name="cpf">CPF</string>
+    <string name="tipo">TIPO</string>
+    <string name="criar">CRIAR</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="categoria">Categoria</string>
+    <string name="horarioInicio">Horário de início: </string>
+    <string name="horarioTermino">Horário de término: </string>
+    <string name="dataInicio">Data de início: </string>
+    <string name="dataTermino">Data de término: </string>
 </resources>

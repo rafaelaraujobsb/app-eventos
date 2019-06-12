@@ -1,124 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#5fb0c9"
-                android:orientation="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#525252"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
                   android:orientation="vertical">
 
-    <TextView
-            android:id="@+id/login_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="44dp"
-            android:gravity="center_horizontal"
-            android:text="Cadastro"
-            android:textColor="#fff"
-            android:textSize="26sp"
-            android:textStyle="bold"/>
-
-    <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login_title"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="30dp"
-            android:background="#fff"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-        <LinearLayout
+        <TextView
+                android:id="@+id/title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="44dp"
+                android:gravity="center_horizontal"
+                android:text="Cadastro"
+                android:textColor="#fff"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:background="#fff"
+                android:elevation="4dp"
                 android:orientation="vertical"
-                android:paddingTop="30dp">
+                android:padding="20dp">
 
-            <EditText
-                    android:id="@+id/txtNome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTint="#FF4081"
-                    android:singleLine="true"
-                    android:hint="Nome"
-                    android:inputType="textPersonName" />
-
-            <EditText
-                    android:id="@+id/txtEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:drawableTint="#FF4081"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"/>
-
-            <EditText
-                    android:id="@+id/txtDescricao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:drawableTint="#FF4081"
-                    android:hint="Confirme o email"
-                    android:inputType="textEmailAddress"/>
-
-            <EditText
-                    android:id="@+id/numCpf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:drawableTint="#FF4081"
-                    android:hint="CPF"
-                    android:inputType="number"/>
-
-            <EditText
-                    android:id="@+id/dateDataNascimento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:drawableTint="#FF4081"
-                    android:hint="Data de nasicmento"
-                    android:inputType="date"/>
-
-            <EditText
-                    android:id="@+id/txtSenha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:drawableTint="#FF4081"
-                    android:hint="Senha"
-                    android:inputType="textPassword"/>
-
-            <EditText
-                    android:id="@+id/txtConfirmarSenha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:drawableTint="#FF4081"
-                    android:hint="Confirme a senha"
-                    android:inputType="textPassword"/>
-
-            <Button
-                    android:id="@+id/btnCadastrar"
+            <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="22dp"
-                    android:background="#d67601"
-                    android:text="Cadastrar"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="18sp" />
-        </LinearLayout>
-    </RelativeLayout>
+                    android:orientation="vertical"
+                    android:paddingTop="30dp">
+
+                <EditText
+                        android:id="@+id/txtNome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableTint="#FF4081"
+                        android:singleLine="true"
+                        android:hint="Nome"
+                        android:inputType="textPersonName"/>
+
+                <EditText
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:drawableTint="#FF4081"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"/>
+
+                <EditText
+                        android:id="@+id/txtDescricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:drawableTint="#FF4081"
+                        android:hint="Confirme o email"
+                        android:inputType="textEmailAddress"/>
+
+                <EditText
+                        android:id="@+id/numCpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:drawableTint="#FF4081"
+                        android:hint="CPF"
+                        android:inputType="number"/>
+
+                <EditText
+                        android:id="@+id/dateDataNascimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:drawableTint="#FF4081"
+                        android:hint="Data de nasicmento"
+                        android:inputType="date"/>
+
+                <Button
+                        android:id="@+id/btnInteresses"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="22dp"
+                        android:background="#d67601"
+                        android:text="Selecionar Interesses"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="18sp"/>
+
+                <EditText
+                        android:id="@+id/txtSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:drawableTint="#FF4081"
+                        android:hint="Senha"
+                        android:inputType="textPassword"/>
+
+                <EditText
+                        android:id="@+id/txtConfirmarSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:drawableTint="#FF4081"
+                        android:hint="Confirme a senha"
+                        android:inputType="textPassword"/>
+
+                <Button
+                        android:id="@+id/btnCadastrar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="22dp"
+                        android:background="#d67601"
+                        android:text="Cadastrar"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="18sp"/>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>
