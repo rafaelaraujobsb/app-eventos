@@ -5,4 +5,5 @@
     <color name="colorBackground">#2E2E2E</color>
     <color name="colorAccent">#D6D6D6</color>
     <color name="colorTextBoxes">#565656</color>
+    <color name="colorSubtitles">#222222</color>
 </resources>

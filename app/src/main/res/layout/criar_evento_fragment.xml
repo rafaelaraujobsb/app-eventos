@@ -64,7 +64,7 @@
 
                     <Button
                             android:id="@+id/btnLocal"
-                            android:text="Buscar Local"
+                            android:text="Buscar Local no Mapa"
                             android:layout_marginTop="16dp"
                             android:layout_height="wrap_content"
                             style="@style/SecondaryButton"
@@ -137,6 +137,7 @@
                             android:id="@+id/spnCategoria"
                             android:layout_marginTop="16dp"
                             android:layout_width="match_parent"
+                            android:layout_height="@dimen/boxHeightSize"
                             android:layout_marginStart="@dimen/marginSize"
                             android:layout_marginEnd="@dimen/marginSize"
                     />

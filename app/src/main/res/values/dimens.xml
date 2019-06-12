@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Text Sizes-->
-    <dimen name="titleTextSize">50sp</dimen>
+    <dimen name="titleTextSize">40sp</dimen>
+    <dimen name="subTitleTextSize">22sp</dimen>
     <dimen name="paragraphTextSize">16sp</dimen>
     <dimen name="primaryButtonTextSize">18sp</dimen>
     <dimen name="secondaryButtonTextSize">16sp</dimen>
