@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#5fb0c9"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true">
 
@@ -17,118 +16,98 @@
                 android:layout_marginTop="44dp"
                 android:gravity="center_horizontal"
                 android:text="Cadastro"
-                android:textColor="#fff"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                style="@style/TitleStyle"
+        />
 
         <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_title"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="30dp"
-                android:background="#fff"
-                android:elevation="4dp"
                 android:orientation="vertical"
-                android:padding="20dp">
+        >
 
             <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="30dp">
+                    android:paddingTop="30dp"
+            >
 
                 <EditText
                         android:id="@+id/txtNome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableTint="#FF4081"
                         android:singleLine="true"
                         android:hint="Nome"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        style="@style/TextBox"
+                />
 
                 <EditText
                         android:id="@+id/txtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:singleLine="true"
-                        android:drawableTint="#FF4081"
                         android:hint="Email"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="textEmailAddress"
+                        style="@style/TextBox"
+                />
 
                 <EditText
                         android:id="@+id/txtDescricao"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:singleLine="true"
-                        android:drawableTint="#FF4081"
                         android:hint="Confirme o email"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="textEmailAddress"
+                        style="@style/TextBox"
+                />
 
                 <EditText
                         android:id="@+id/numCpf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:singleLine="true"
-                        android:drawableTint="#FF4081"
                         android:hint="CPF"
-                        android:inputType="number"/>
+                        android:inputType="number"
+                        style="@style/TextBox"
+                />
 
                 <EditText
                         android:id="@+id/dateDataNascimento"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:singleLine="true"
-                        android:drawableTint="#FF4081"
                         android:hint="Data de nasicmento"
-                        android:inputType="date"/>
+                        android:inputType="date"
+                        style="@style/TextBox"
+                />
 
                 <Button
                         android:id="@+id/btnInteresses"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="22dp"
-                        android:background="#D601B3"
+                        android:layout_marginTop="22dp"
                         android:text="Selecionar Interesses"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="18sp" />
+                        style="@style/SecondaryButton"
+                />
 
                 <EditText
                         android:id="@+id/txtSenha"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:singleLine="true"
-                        android:drawableTint="#FF4081"
                         android:hint="Senha"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        style="@style/TextBox"
+                />
 
                 <EditText
                         android:id="@+id/txtConfirmarSenha"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:singleLine="true"
-                        android:drawableTint="#FF4081"
                         android:hint="Confirme a senha"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        style="@style/TextBox"
+                />
 
                 <Button
                         android:id="@+id/btnCadastrar"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="22dp"
-                        android:background="#d67601"
                         android:text="Cadastrar"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="22dp"
+                        style="@style/PrimaryButton"
+                />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
