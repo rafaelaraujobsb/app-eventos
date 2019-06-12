@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -123,12 +124,22 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
                         for(DataSnapshot ref : dataSnapshot.getChildren()){
                             Evento evento = ref.getValue(Evento.class);
                             if(evento!=null){
-                                Calendar calendar = Calendar.getInstance();
-                                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-                                String dataHoje = formatter.format(calendar.getTime());
-                                String dataDoEvento = dataHoje.split("-")[0];
-                                String horaDoEvento = dataHoje.split("-")[1];
-                                if(dataHoje.equals(evento.getData())){
+                                try{
+                                    Calendar calendar = Calendar.getInstance();
+                                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+                                    String dataHoraAtual = formatter.format(calendar.getTime());
+
+                                    Date dataInicio = formatter.parse(evento.getDataInicio() + " - " + evento.getHorarioInicio());
+                                    Date dataTermino = formatter.parse(evento.getDataTermino() + " - " + evento.getHorarioTermino());
+                                    Date dataAtual = formatter.parse(dataHoraAtual);
+
+                                    if(dataAtual.before(dataTermino) && dataAtual.after(dataInicio)){
+                                        LatLng latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
+                                        Marker marcador = mMap.addMarker(new MarkerOptions().position(latLng));
+                                        eventos.put(marcador, evento);
+                                    }
+
+                                }catch (Exception e){
 
                                 }
                             }

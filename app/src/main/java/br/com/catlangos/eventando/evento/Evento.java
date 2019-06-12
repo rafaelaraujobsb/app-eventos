@@ -17,15 +17,25 @@ public class Evento implements Serializable {
     private Double longitude;
     private String horarioInicio;
     private String horarioTermino;
-    private String data;
+    private String dataInicio;
+    private String dataTermino;
+
     public final static String EVENTO = "evento";
 
-    public String getData() {
-        return data;
+    public String getDataInicio() {
+        return dataInicio;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(String dataTermino) {
+        this.dataTermino = dataTermino;
     }
 
     public String getHorarioInicio() {

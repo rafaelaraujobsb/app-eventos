@@ -146,17 +146,20 @@
                             android:id="@+id/spnCategoria"/>
 
                     <TextView
-                            android:text="Data"
+                            android:text="@string/dataInicio"
+                            android:id="@+id/txtDataInicio"
                             android:layout_width="match_parent"
                             android:layout_height="37dp"
                             android:textSize="18sp"
                             android:paddingTop="15dp"/>
 
-                    <CalendarView
+                    <TextView
+                            android:text="@string/dataTermino"
+                            android:id="@+id/txtDataTermino"
                             android:layout_width="match_parent"
-                            android:layoutMode="clipBounds"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/calendario"/>
+                            android:layout_height="37dp"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
 
                     <TextView
                             android:text="@string/horarioInicio"
@@ -173,25 +176,6 @@
                             android:id="@+id/txtHorarioTermino"
                             android:textSize="18sp"
                             android:paddingTop="15dp"/>
-
-                    <RadioGroup
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:orientation="horizontal"
-                            android:paddingTop="15dp">
-
-                        <RadioButton
-                                android:text="Público"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/radioPublico"
-                                android:layout_weight="1"/>
-
-                        <RadioButton
-                                android:text="Privado"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/radioPrivado"
-                                android:layout_weight="1"/>
-                    </RadioGroup>
 
                     <Button
                             android:id="@+id/btnCriar"

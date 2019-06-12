@@ -24,6 +24,7 @@ import com.google.firebase.database.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -34,6 +35,8 @@ public class CriarEventoFragment extends Fragment {
     private DatabaseReference dataBase;
     private TextView txthorarioInicio;
     private TextView txthorarioTermino;
+    private TextView txtDataInicio;
+    private TextView txtDataTermino;
     private Button btnAdicionarLocal;
     private Button btnCriarEvento;
     private EditText nome;
@@ -48,11 +51,12 @@ public class CriarEventoFragment extends Fragment {
     private Double longitude;
     private Spinner spinner;
     private String categoria;
-    private CalendarView calendario;
     private int REQUEST_CODE = 1;
     private List<String> categorias = new ArrayList<>();
     private TimePickerDialog timePickerDialog;
-    private String data;
+    private DatePickerDialog datePickerDialog;
+    private String dataInicioEnvio;
+    private String dataTerminoEnvio;
     private String horarioInicioEnvio;
     private String horarioTerminoEnvio;
 
@@ -79,10 +83,12 @@ public class CriarEventoFragment extends Fragment {
         rua = view.findViewById(R.id.txtRua);
         complemento = view.findViewById(R.id.txtComplemento);
         btnCriarEvento = view.findViewById(R.id.btnCriar);
+        btnAdicionarLocal = view.findViewById(R.id.btnLocal);
         descricao = view.findViewById(R.id.txtDescricao);
         txthorarioInicio = view.findViewById(R.id.txtHorarioInicio);
         txthorarioTermino = view.findViewById(R.id.txtHorarioTermino);
-        calendario = view.findViewById(R.id.calendario);
+        txtDataInicio = view.findViewById(R.id.txtDataInicio);
+        txtDataTermino = view.findViewById(R.id.txtDataTermino);
 
         configurarCalendario();
         configurarTxtHorarios();
@@ -153,7 +159,6 @@ public class CriarEventoFragment extends Fragment {
     }
 
     private void configurarBtnAdicionarLocal(View view){
-        btnAdicionarLocal = view.findViewById(R.id.btnLocal);
         btnAdicionarLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,17 +217,31 @@ public class CriarEventoFragment extends Fragment {
         evento.setRua(Utils.Companion.editTextToString(rua));
         evento.setLatitude(latitude);
         evento.setLongitude(longitude);
-        evento.setData(data);
-        if(Utils.Companion.textViewToString(txthorarioInicio).equals(getString(R.string.horarioInicio))){
+        evento.setDataInicio(dataInicioEnvio);
+        evento.setDataTermino(dataTerminoEnvio);
+
+        if(horarioInicioEnvio.equals("") || horarioInicioEnvio==null){
             evento.setHorarioInicio("");
         }else{
             evento.setHorarioInicio(horarioInicioEnvio);
         }
 
-        if(Utils.Companion.textViewToString(txthorarioTermino).equals(getString(R.string.horarioTermino))){
+        if(horarioTerminoEnvio.equals("") || horarioTerminoEnvio==null){
             evento.setHorarioTermino("");
         }else{
             evento.setHorarioTermino(horarioTerminoEnvio);
+        }
+
+        if(dataInicioEnvio.equals("") || dataInicioEnvio==null){
+            evento.setDataInicio("");
+        }else{
+            evento.setDataInicio(dataInicioEnvio);
+        }
+
+        if(dataTerminoEnvio.equals("") || dataTerminoEnvio==null){
+            evento.setDataTermino("");
+        }else{
+            evento.setDataTermino(dataTerminoEnvio);
         }
         return evento;
     }
@@ -280,9 +299,9 @@ public class CriarEventoFragment extends Fragment {
 
                         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                         String horarioInicio = formatter.format(calendar.getTime());
-                        String[] horaMinuto =  horarioInicio.split(":");
+                        //String[] horaMinuto =  horarioInicio.split(":");
 
-                        txthorarioInicio.setText("Horário de início: " + horaMinuto[0]+ ":" + horaMinuto[1]);
+                        txthorarioInicio.setText(getString(R.string.horarioInicio) + " " + horarioInicio);
                         horarioInicioEnvio = horarioInicio;
                     }
                 }, 0, 0, true);
@@ -302,8 +321,9 @@ public class CriarEventoFragment extends Fragment {
 
                         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
                         String horarioTermino = formatter.format(calendar.getTime());
-                        String[] horaMinuto =  horarioTermino.split(":");
-                        txthorarioTermino.setText("Horário de término: " + horaMinuto[0] + ":" + horaMinuto[1]);
+                        //String[] horaMinuto =  horarioTermino.split(":");
+
+                        txthorarioTermino.setText(getString(R.string.horarioTermino) + " " + horarioTermino);
                         horarioTerminoEnvio= horarioTermino;
                     }
                 }, 0, 0, true);
@@ -313,15 +333,45 @@ public class CriarEventoFragment extends Fragment {
     }
 
     private void configurarCalendario(){
-        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        dataInicioEnvio = "";
+        dataTerminoEnvio = "";
+        txtDataInicio.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.YEAR, year);
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                data = formatter.format(calendar.getTime());
+            public void onClick(View v) {
+                Calendar calendarAux = Calendar.getInstance();
+                datePickerDialog = new DatePickerDialog(requireContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.YEAR, year);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        dataInicioEnvio = formatter.format(calendar.getTime());
+                        txtDataInicio.setText(getString(R.string.dataInicio) + " " + dataInicioEnvio);
+                    }
+                }, calendarAux.get(Calendar.YEAR), calendarAux.get(Calendar.MONTH), calendarAux.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
+
+        txtDataTermino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendarAux = Calendar.getInstance();
+                datePickerDialog = new DatePickerDialog(requireContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.YEAR, year);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        dataTerminoEnvio = formatter.format(calendar.getTime());
+                        txtDataTermino.setText(getString(R.string.dataTermino) + " " + dataTerminoEnvio);
+                    }
+                }, calendarAux.get(Calendar.YEAR), calendarAux.get(Calendar.MONTH), calendarAux.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
             }
         });
     }
