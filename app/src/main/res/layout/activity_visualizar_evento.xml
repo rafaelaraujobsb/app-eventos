@@ -157,7 +157,7 @@
                             android:id="@+id/txtHintComplemento"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:hint="@string/complemento"
+                            android:hint="@string/visualizar_complemento"
                             android:inputType="text|textMultiLine"
                             style="@style/ParagraphStyle"
                     />

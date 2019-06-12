@@ -1,6 +1,9 @@
-package br.com.catlangos.eventando;
+package br.com.catlangos.eventando.Mapas;
 
 import android.Manifest;
+import android.app.ActivityManager;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import br.com.catlangos.eventando.R;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -157,10 +161,14 @@ public class MapaCriarEvento extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void getLastLocation(){
-        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
-
+        try{
+            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+        }catch(Exception e){
+            LatLng actualLocation = new LatLng(-15.7896196,-47.8911385);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+        }
     }
 
     public LatLng getLatLngSelecionado() {

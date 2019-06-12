@@ -13,10 +13,36 @@ public class Evento implements Serializable {
     private String complemento;
     private String descricao;
     private String categoria;
-    private String data;
     private Double latitude;
     private Double longitude;
+    private String horarioInicio;
+    private String horarioTermino;
+    private String data;
     public final static String EVENTO = "evento";
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(String horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public String getHorarioTermino() {
+        return horarioTermino;
+    }
+
+    public void setHorarioTermino(String horarioTermino) {
+        this.horarioTermino = horarioTermino;
+    }
 
     public Double getLatitude() {
         return latitude;
@@ -106,14 +132,6 @@ public class Evento implements Serializable {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public Boolean getPrivado() {

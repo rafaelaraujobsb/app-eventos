@@ -4,6 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,6 +27,9 @@
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
+                      android:focusableInTouchMode="true"
+                      android:touchscreenBlocksFocus="true"
+                      android:descendantFocusability="beforeDescendants"
         >
 
             <TextView
@@ -135,26 +139,39 @@
                             android:layout_width="match_parent"
                             android:layout_marginStart="@dimen/marginSize"
                             android:layout_marginEnd="@dimen/marginSize"
-                            android:layout_height="@dimen/boxHeightSize"
                     />
-                    <!--<TextView
-                            android:text="Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp" android:id="@+id/txtData" android:textSize="18sp"
-                            android:paddingTop="10dp"/>-->
 
-                    <!--<CalendarView
+                    <TextView
+                            android:text="Data"
+                            android:textAlignment="center"
+                            style="@style/ParagraphStyle"
+                    />
+
+                    <CalendarView
                             android:layout_width="match_parent"
                             android:layoutMode="clipBounds"
                             android:layout_height="wrap_content"
-                            android:id="@+id/calendario"/>-->
+                            android:id="@+id/calendario"
+                    />
+
+                    <TextView
+                            android:text="@string/horarioInicio"
+                            android:id="@+id/txtHorarioInicio"
+                            style="@style/ParagraphStyle"
+                    />
+
+                    <TextView
+                            android:text="@string/horarioTermino"
+                            android:id="@+id/txtHorarioTermino"
+                            style="@style/ParagraphStyle"
+                    />
 
                     <Button
                             android:id="@+id/btnCriar"
                             android:layout_marginTop="22dp"
                             android:text="Criar"
-                            android:textAllCaps="false"
                             style="@style/PrimaryButton"
+                            android:layout_marginBottom="@dimen/marginSize"
                     />
 
                 </LinearLayout>

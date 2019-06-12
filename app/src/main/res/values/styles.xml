@@ -37,6 +37,7 @@
         <item name="android:layout_marginStart">@dimen/marginSize</item>
         <item name="android:layout_marginEnd">@dimen/marginSize</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="PrimaryButton" parent="StdButton">

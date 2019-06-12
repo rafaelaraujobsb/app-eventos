@@ -2,6 +2,7 @@ package br.com.catlangos.eventando.utils
 
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 
 class Utils {
@@ -23,6 +24,13 @@ class Utils {
 
         //Transforma edit text em String
         fun editTextToString(v1 : EditText) : String{
+            if(v1 != null){
+                return v1.text.toString()
+            }
+            return ""
+        }
+
+        fun textViewToString(v1 : TextView) : String{
             if(v1 != null){
                 return v1.text.toString()
             }
