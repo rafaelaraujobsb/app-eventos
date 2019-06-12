@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.provider.ContactsContract;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -24,6 +25,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCallback {
@@ -37,6 +41,7 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
     public final static String CODIGO_DE_BUSCA = "CODIGO_DE_BUSCA";
     public final static String TODOS = "TODOS";
     public final static String CATEGORIA = "CATEGORIA";
+    public final static String ACONTECENDO_AGORA = "ACONTECENDO_AGORA";
     public final static String CATEGORIA_SELECIONADA = "CATEGORIA_SELECIONADA";
 
     @Override
@@ -90,8 +95,8 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
 
             case CATEGORIA:
                 String categoriaSelecionada = getIntent().getStringExtra(CATEGORIA_SELECIONADA);
-                Query query = reference.orderByChild("categoria").equalTo(categoriaSelecionada);
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                Query queryCategoria = reference.orderByChild("categoria").equalTo(categoriaSelecionada);
+                queryCategoria.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ref : dataSnapshot.getChildren()){
@@ -100,6 +105,30 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
                                 LatLng latLng = new LatLng(evento.getLatitude(), evento.getLongitude());
                                 Marker marcador = mMap.addMarker(new MarkerOptions().position(latLng));
                                 eventos.put(marcador, evento);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                break;
+
+            case ACONTECENDO_AGORA:
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ref : dataSnapshot.getChildren()){
+                            Evento evento = ref.getValue(Evento.class);
+                            if(evento!=null){
+                                Date date = new Date();
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+                                String dataHoje = formatter.format(date);
+                                if(dataHoje.equals(evento.getData())){
+
+                                }
                             }
                         }
                     }

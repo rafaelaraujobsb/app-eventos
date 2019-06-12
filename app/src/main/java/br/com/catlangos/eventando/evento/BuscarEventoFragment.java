@@ -2,7 +2,6 @@ package br.com.catlangos.eventando.evento;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.annotation.NonNull;
@@ -15,13 +14,11 @@ import android.view.ViewGroup;
 
 import br.com.catlangos.eventando.Mapas.MapsBuscarEvento;
 import br.com.catlangos.eventando.R;
-import br.com.catlangos.eventando.login.CadastroActivity;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import static br.com.catlangos.eventando.Mapas.MapsBuscarEvento.*;
 
@@ -32,7 +29,7 @@ public class BuscarEventoFragment extends Fragment {
     private DatabaseReference reference;
     private Button btnTodos;
     private Button btnCategoria;
-    private Button btnNome;
+    private Button btnAcontecendoAgora;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +48,7 @@ public class BuscarEventoFragment extends Fragment {
     private void configurarBotoes(final View view) {
         btnTodos = view.findViewById(R.id.btnTodos);
         btnCategoria = view.findViewById(R.id.btnCategoria);
-        btnNome = view.findViewById(R.id.btnNome);
+        btnAcontecendoAgora = view.findViewById(R.id.btnAcontecendoAgora);
 
         btnTodos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +83,17 @@ public class BuscarEventoFragment extends Fragment {
                 builder.show();
             }
         });
+
+        btnAcontecendoAgora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireActivity(), MapsBuscarEvento.class);
+                intent.putExtra(CODIGO_DE_BUSCA, ACONTECENDO_AGORA);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void buscarCategorias(){

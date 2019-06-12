@@ -280,6 +280,10 @@ public class CriarEventoFragment extends Fragment {
                 timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                        Date date = new Date();
+//                        Calendar calendar = Calendar.getInstance();
+//                        calendar.set(Calendar.DAY_OF_MONTH, );
+
                         horarioInicio.setText("Horário de início: " + hourOfDay + ":" + minute);
                         horarioInicioEnvio = "" + hourOfDay + ":" + minute;
                     }
