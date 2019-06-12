@@ -15,7 +15,7 @@
     </fragment>
 
     <fragment android:id="@+id/fragmentMapa"
-              android:name="br.com.catlangos.eventando.Mapas.MapaCriarEvento"
+              android:name="br.com.catlangos.eventando.mapas.MapaCriarEvento"
               android:label="activity_mapa"
               tools:layout="@layout/activity_mapa">
     </fragment>
