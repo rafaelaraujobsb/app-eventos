@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import br.com.catlangos.eventando.Mapas.MapsBuscarEvento;
+import br.com.catlangos.eventando.mapas.MapsBuscarEvento;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.firebase.database.*;
@@ -20,7 +20,7 @@ import com.google.firebase.database.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.catlangos.eventando.Mapas.MapsBuscarEvento.*;
+import static br.com.catlangos.eventando.mapas.MapsBuscarEvento.*;
 
 public class BuscarEventoFragment extends Fragment {
 

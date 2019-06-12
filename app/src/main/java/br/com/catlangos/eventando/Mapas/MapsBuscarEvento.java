@@ -1,4 +1,4 @@
-package br.com.catlangos.eventando.Mapas;
+package br.com.catlangos.eventando.mapas;
 
 import android.Manifest;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.provider.ContactsContract;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -27,6 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -123,9 +123,11 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
                         for(DataSnapshot ref : dataSnapshot.getChildren()){
                             Evento evento = ref.getValue(Evento.class);
                             if(evento!=null){
-                                Date date = new Date();
+                                Calendar calendar = Calendar.getInstance();
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-                                String dataHoje = formatter.format(date);
+                                String dataHoje = formatter.format(calendar.getTime());
+                                String dataDoEvento = dataHoje.split("-")[0];
+                                String horaDoEvento = dataHoje.split("-")[1];
                                 if(dataHoje.equals(evento.getData())){
 
                                 }
@@ -176,4 +178,5 @@ public class MapsBuscarEvento extends FragmentActivity implements OnMapReadyCall
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
         }
     }
+
 }

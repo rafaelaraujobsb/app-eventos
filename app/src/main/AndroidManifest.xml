@@ -33,7 +33,7 @@
                 android:value="@string/google_maps_key"/>
 
         <activity
-                android:name=".Mapas.MapsBuscarEvento"
+                android:name=".mapas.MapsBuscarEvento"
                 android:label="@string/title_activity_maps">
         </activity>
 
@@ -44,7 +44,7 @@
         <activity android:name=".evento.CriarEventoActivity">
         </activity>
         <activity
-                android:name=".Mapas.MapaCriarEvento"
+                android:name=".mapas.MapaCriarEvento"
                 android:label="@string/title_activity_mapa"
                 android:windowSoftInputMode="stateHidden">
         </activity>

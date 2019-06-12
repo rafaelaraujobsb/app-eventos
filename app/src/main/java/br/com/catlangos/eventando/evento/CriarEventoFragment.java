@@ -10,25 +10,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import br.com.catlangos.eventando.Mapas.MapaCriarEvento;
+import br.com.catlangos.eventando.mapas.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
-import br.com.catlangos.eventando.home.HomeActivity;
 import br.com.catlangos.eventando.utils.Utils;
-import com.bumptech.glide.util.Util;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -37,8 +32,8 @@ public class CriarEventoFragment extends Fragment {
 
     private FirebaseDatabase fireBaseDatabase;
     private DatabaseReference dataBase;
-    private TextView horarioInicio;
-    private TextView horarioTermino;
+    private TextView txthorarioInicio;
+    private TextView txthorarioTermino;
     private Button btnAdicionarLocal;
     private Button btnCriarEvento;
     private EditText nome;
@@ -85,8 +80,8 @@ public class CriarEventoFragment extends Fragment {
         complemento = view.findViewById(R.id.txtComplemento);
         btnCriarEvento = view.findViewById(R.id.btnCriar);
         descricao = view.findViewById(R.id.txtDescricao);
-        horarioInicio = view.findViewById(R.id.txtHorarioInicio);
-        horarioTermino = view.findViewById(R.id.txtHorarioTermino);
+        txthorarioInicio = view.findViewById(R.id.txtHorarioInicio);
+        txthorarioTermino = view.findViewById(R.id.txtHorarioTermino);
         calendario = view.findViewById(R.id.calendario);
 
         configurarCalendario();
@@ -208,7 +203,7 @@ public class CriarEventoFragment extends Fragment {
         Evento evento = new Evento();
         evento.setBairro(Utils.Companion.editTextToString(bairro));
         evento.setCep(Utils.Companion.editTextToString(cep));
-        evento.setBairro(Utils.Companion.editTextToString(bairro));
+        evento.setComplemento(Utils.Companion.editTextToString(complemento));
         evento.setCidade(Utils.Companion.editTextToString(cidade));
         evento.setEstado(Utils.Companion.editTextToString(estado));
         evento.setCategoria(categoria);
@@ -218,18 +213,17 @@ public class CriarEventoFragment extends Fragment {
         evento.setLatitude(latitude);
         evento.setLongitude(longitude);
         evento.setData(data);
-        if(Utils.Companion.textViewToString(horarioInicio).equals(getString(R.string.horarioInicio))){
+        if(Utils.Companion.textViewToString(txthorarioInicio).equals(getString(R.string.horarioInicio))){
             evento.setHorarioInicio("");
         }else{
             evento.setHorarioInicio(horarioInicioEnvio);
         }
 
-        if(Utils.Companion.textViewToString(horarioTermino).equals(getString(R.string.horarioTermino))){
+        if(Utils.Companion.textViewToString(txthorarioTermino).equals(getString(R.string.horarioTermino))){
             evento.setHorarioTermino("");
         }else{
             evento.setHorarioTermino(horarioTerminoEnvio);
         }
-
         return evento;
     }
 
@@ -274,32 +268,43 @@ public class CriarEventoFragment extends Fragment {
     private void configurarTxtHorarios(){
         horarioInicioEnvio = "";
         horarioTerminoEnvio= "";
-        horarioInicio.setOnClickListener(new View.OnClickListener() {
+        txthorarioInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                        Date date = new Date();
-//                        Calendar calendar = Calendar.getInstance();
-//                        calendar.set(Calendar.DAY_OF_MONTH, );
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
 
-                        horarioInicio.setText("Horário de início: " + hourOfDay + ":" + minute);
-                        horarioInicioEnvio = "" + hourOfDay + ":" + minute;
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                        String horarioInicio = formatter.format(calendar.getTime());
+                        String[] horaMinuto =  horarioInicio.split(":");
+
+                        txthorarioInicio.setText("Horário de início: " + horaMinuto[0]+ ":" + horaMinuto[1]);
+                        horarioInicioEnvio = horarioInicio;
                     }
                 }, 0, 0, true);
                 timePickerDialog.show();
             }
         });
 
-        horarioTermino.setOnClickListener(new View.OnClickListener() {
+        txthorarioTermino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        horarioTermino.setText("Horário de término: " + hourOfDay + ":" + minute);
-                        horarioTerminoEnvio= "" + hourOfDay + ":" + minute;
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                        String horarioTermino = formatter.format(calendar.getTime());
+                        String[] horaMinuto =  horarioTermino.split(":");
+                        txthorarioTermino.setText("Horário de término: " + horaMinuto[0] + ":" + horaMinuto[1]);
+                        horarioTerminoEnvio= horarioTermino;
                     }
                 }, 0, 0, true);
                 timePickerDialog.show();
@@ -311,7 +316,12 @@ public class CriarEventoFragment extends Fragment {
         calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                data = "" + dayOfMonth + "/" + month + "/" + year;
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.YEAR, year);
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                data = formatter.format(calendar.getTime());
             }
         });
     }

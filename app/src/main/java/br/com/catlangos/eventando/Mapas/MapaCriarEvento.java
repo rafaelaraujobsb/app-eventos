@@ -1,9 +1,6 @@
-package br.com.catlangos.eventando.Mapas;
+package br.com.catlangos.eventando.mapas;
 
 import android.Manifest;
-import android.app.ActivityManager;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
