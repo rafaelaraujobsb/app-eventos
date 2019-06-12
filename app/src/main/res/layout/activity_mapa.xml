@@ -17,9 +17,8 @@
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
 
     <Button android:layout_gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:id="@+id/btnSelecionarLocal"
-            android:text="@string/descConfirmar"/>
+            android:text="@string/descConfirmar"
+            style="@style/PrimaryButton"
+    />
 </FrameLayout>

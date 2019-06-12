@@ -18,12 +18,16 @@
     <style name="ParagraphStyle" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/paragraphTextSize</item>
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="TitleStyle" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/titleTextSize</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="StdButton">
@@ -53,6 +57,16 @@
         <item name="android:layout_marginEnd">@dimen/marginSize</item>
         <item name="android:layout_height">@dimen/boxHeightSize</item>
         <item name="android:background">@drawable/text_box</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="SpinnerTheme" parent="Base.Widget.AppCompat.Spinner">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@drawable/text_box</item>
+        <item name="android:layout_height">@dimen/boxHeightSize</item>
+        <item name="android:textSize">@dimen/paragraphTextSize</item>
+        <item name="android:layout_marginStart">@dimen/marginSize</item>
+        <item name="android:layout_marginEnd">@dimen/marginSize</item>
         <item name="android:padding">@dimen/paddingSize</item>
         <item name="android:layout_width">match_parent</item>
     </style>
