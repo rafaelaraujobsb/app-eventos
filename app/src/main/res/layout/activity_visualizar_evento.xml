@@ -220,6 +220,17 @@
                             android:inputType="text|textMultiLine"
                             android:textSize="24sp"/>
 
+                    <Button
+                            android:id="@+id/btnParticiparEvento"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="22dp"
+                            android:background="#D601B3"
+                            android:text="Participar do Evento"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="18sp" />
+
                     <!--<TextView
                             android:text="Data"
                             android:layout_width="match_parent"

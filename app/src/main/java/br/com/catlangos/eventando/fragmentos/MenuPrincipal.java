@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -83,7 +82,7 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
                     }
                 }
 
-                for(Integer i = 0; i < lstCategoriasTraduzidas.size(); i++) {
+                for(int i = 0; i < lstCategoriasTraduzidas.size(); i++) {
                     query2 = reference.child("Eventos").orderByChild("categoria").equalTo(lstCategoriasTraduzidas.get(i));
                     query2.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override

@@ -1,6 +1,7 @@
 package br.com.catlangos.eventando.evento;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Evento implements Serializable {
 
@@ -17,6 +18,9 @@ public class Evento implements Serializable {
     private String data;
     private Double latitude;
     private Double longitude;
+    private int ativo = 1;
+    private List<String> participantes;
+
     public final static String EVENTO = "evento";
 
     public Double getLatitude() {
@@ -132,4 +136,9 @@ public class Evento implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    public void setParticipantes(List<String> participantes) {
+        this.participantes = participantes;
+    }
+
 }

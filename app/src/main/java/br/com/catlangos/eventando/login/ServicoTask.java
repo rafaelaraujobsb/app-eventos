@@ -5,11 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import br.com.catlangos.eventando.evento.Evento;
-import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,14 +12,12 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServicoTask extends AsyncTask<Void, Void, String> {
     private Context httpContext;
     private View view;
     private ProgressDialog progressDialog;
-    private String resultadoAPI;
     private String linkRequestAPI;
     private String idUsuario;
     private List<Interesses> interesses;
