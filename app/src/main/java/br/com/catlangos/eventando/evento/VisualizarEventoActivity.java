@@ -21,6 +21,10 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
     TextView complemento;
     TextView descricao;
     TextView categoria;
+    TextView dataInicio;
+    TextView dataTermino;
+    TextView horarioInicio;
+    TextView horarioTermino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,10 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         complemento = findViewById(R.id.txtComplemento);
         descricao = findViewById(R.id.txtDescricao);
         categoria = findViewById(R.id.txtCategoria);
+        dataInicio = findViewById(R.id.txtDataInicio);
+        dataTermino = findViewById(R.id.txtDataTermino);
+        horarioInicio = findViewById(R.id.txtHorarioInicio);
+        horarioTermino = findViewById(R.id.txtHorarioTermino);
 
         nome.setText(evento.getNome());
         cep.setText(evento.getCep());
@@ -48,6 +56,9 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         complemento.setText(evento.getComplemento());
         descricao.setText(evento.getDescricao());
         categoria.setText(evento.getCategoria());
-
+        dataInicio.setText(evento.getDataInicio());
+        dataTermino.setText(evento.getDataTermino());
+        horarioInicio.setText(evento.getHorarioInicio());
+        horarioTermino.setText(evento.getHorarioTermino());
     }
 }
