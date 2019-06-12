@@ -159,12 +159,14 @@
                             android:text="@string/horarioInicio"
                             android:id="@+id/txtHorarioInicio"
                             style="@style/ParagraphStyle"
+                            android:layout_marginLeft="@dimen/marginSize"
                     />
 
                     <TextView
                             android:text="@string/horarioTermino"
                             android:id="@+id/txtHorarioTermino"
                             style="@style/ParagraphStyle"
+                            android:layout_marginLeft="@dimen/marginSize"
                     />
 
                     <Button

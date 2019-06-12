@@ -3,7 +3,8 @@
     <color name="colorPrimary">#00ADE1</color>
     <color name="colorPrimaryDark">#013861</color>
     <color name="colorBackground">#2E2E2E</color>
-    <color name="colorAccent">#D6D6D6</color>
+    <color name="colorAccent">#00ADE1</color>
     <color name="colorTextBoxes">#565656</color>
     <color name="colorSubtitles">#222222</color>
+    <color name="textColor">#D6D6D6</color>
 </resources>
