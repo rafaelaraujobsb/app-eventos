@@ -7,11 +7,11 @@
 >
 
     <TextView
-            android:id="@+id/login_title"
+            android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/marginSize"
             android:gravity="center_horizontal"
             android:text="Login"
             style="@style/TitleStyle"
@@ -23,6 +23,7 @@
             android:layout_below="@+id/login_title"
             android:elevation="4dp"
             android:orientation="vertical"
+            android:layout_marginTop="50dp"
     >
 
         <LinearLayout

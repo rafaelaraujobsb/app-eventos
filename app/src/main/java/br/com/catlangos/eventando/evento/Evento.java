@@ -1,9 +1,11 @@
 package br.com.catlangos.eventando.evento;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Evento implements Serializable {
 
+    private String id;
     private String nome;
     private String cep;
     private String estado;
@@ -15,17 +17,29 @@ public class Evento implements Serializable {
     private String categoria;
     private Double latitude;
     private Double longitude;
+    private int ativo = 1;
+    private List<String> participantes;
     private String horarioInicio;
     private String horarioTermino;
-    private String data;
+    private String dataInicio;
+    private String dataTermino;
+
     public final static String EVENTO = "evento";
 
-    public String getData() {
-        return data;
+    public String getDataInicio() {
+        return dataInicio;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(String dataTermino) {
+        this.dataTermino = dataTermino;
     }
 
     public String getHorarioInicio() {
@@ -141,4 +155,17 @@ public class Evento implements Serializable {
     public void setPrivado(Boolean privado) {
         this.privado = privado;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setParticipantes(List<String> participantes) {
+        this.participantes = participantes;
+    }
+
 }

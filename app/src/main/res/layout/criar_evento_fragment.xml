@@ -143,16 +143,19 @@
                     />
 
                     <TextView
-                            android:text="Data"
-                            android:textAlignment="center"
+                            android:text="@string/dataInicio"
+                            android:id="@+id/txtDataInicio"
                             style="@style/ParagraphStyle"
+                            android:layout_marginLeft="@dimen/marginSize"
+                            android:layout_marginTop="16dp"
                     />
 
-                    <CalendarView
-                            android:layout_width="match_parent"
-                            android:layoutMode="clipBounds"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/calendario"
+                    <TextView
+                            android:text="@string/dataTermino"
+                            android:id="@+id/txtDataTermino"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="@dimen/marginSize"
+                            android:layout_marginTop="16dp"
                     />
 
                     <TextView
@@ -160,6 +163,7 @@
                             android:id="@+id/txtHorarioInicio"
                             style="@style/ParagraphStyle"
                             android:layout_marginLeft="@dimen/marginSize"
+                            android:layout_marginTop="16dp"
                     />
 
                     <TextView
@@ -167,6 +171,7 @@
                             android:id="@+id/txtHorarioTermino"
                             style="@style/ParagraphStyle"
                             android:layout_marginLeft="@dimen/marginSize"
+                            android:layout_marginTop="16dp"
                     />
 
                     <Button

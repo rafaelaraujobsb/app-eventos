@@ -1,9 +1,6 @@
-package br.com.catlangos.eventando.Mapas;
+package br.com.catlangos.eventando.mapas;
 
 import android.Manifest;
-import android.app.ActivityManager;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -104,7 +101,10 @@ public class MapaCriarEvento extends FragmentActivity implements OnMapReadyCallb
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getBaseContext(), CriarEventoFragment.class);
+                if(getLatLngSelecionado() == null){
+                    Toast.makeText(v.getContext(), "Pressione e segure para definir um local", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.putExtra(LATITUDE, getLatLngSelecionado().latitude);
                 intent.putExtra(LONGITUDE, getLatLngSelecionado().longitude);
