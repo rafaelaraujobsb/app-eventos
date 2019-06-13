@@ -31,7 +31,9 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
     private DatabaseReference reference;
     private Query query;
     private Query query2;
+    private Query query3;
     private DatabaseReference reference2;
+    private DatabaseReference reference3;
     List<Evento> eventos = new ArrayList<>();
     private FloatingActionButton btnCadastrarEvento;
     private List<String> lstCategoriasTraduzidas = new ArrayList<>();
@@ -43,6 +45,7 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
         reference2 = database.getReference();
+        reference3 = database.getReference();
         query = reference2.child("Usuarios").orderByChild("email").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
         return inflater.inflate(R.layout.fragment_principal, container, false);
@@ -93,6 +96,7 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
                                     eventos.add(evento);
                                 }
                             }
+
                             RecyclerView recyclerView = requireActivity().findViewById(R.id.recyclerViewMenuPrincipal);
                             recyclerView.setItemAnimator(new DefaultItemAnimator());
                             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -112,6 +116,30 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
 
             }
         });
+
+        if(eventos.isEmpty()) {
+            query3 = reference3.child("Eventos");
+            query3.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot ref : dataSnapshot.getChildren()){
+                        Evento evento = ref.getValue(Evento.class);
+                        if(evento != null){
+                            eventos.add(evento);
+                        }
+                    }
+                    RecyclerView recyclerView = requireActivity().findViewById(R.id.recyclerViewMenuPrincipal);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView.setAdapter(new MeuAdaptador(eventos, ctx));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     public static <T extends List<?>> T cast(Object obj) {
