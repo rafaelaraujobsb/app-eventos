@@ -187,6 +187,7 @@ public class CriarEventoFragment extends Fragment {
         try {
             final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Eventos");
             final String chave = reference.push().getKey();
+            evento.setId(chave);
             reference.child(chave).setValue(evento).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,10 +18,11 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
     private Context httpContext;
     private View view;
     private ProgressDialog progressDialog;
-    private String resultadoAPI;
     private String linkRequestAPI;
     private String idUsuario;
     private List<Interesses> interesses;
+    private BufferedReader reader = null;
+    private HttpURLConnection urlConnection;
 
     public ServicoTask(Context ctx, String linkAPI, View view, String idUsuario, List<Interesses> interesses) {
         this.httpContext = ctx;
@@ -45,7 +46,7 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
         URL url;
         try {
             url = new URL(wsURL);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
 
             // Criar o objeto JSON para enviar por POST
@@ -70,22 +71,9 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
             wr.close();
 
             int responseCode=urlConnection.getResponseCode();// Código da resposta
-            if(responseCode == HttpURLConnection.HTTP_OK){
-                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                StringBuffer sb = new StringBuffer("");
-                String linea="";
-                while ((linea = in.readLine())!= null){
-                    sb.append(linea);
-                    break;
-                }
-                in.close();
-                result = sb.toString();
+            if(responseCode != HttpURLConnection.HTTP_OK){
+                Toast.makeText(httpContext, "Ops, algum erro aconteceu. Código: " + responseCode, Toast.LENGTH_LONG).show();
             }
-            else{
-                result = new String("Error: "+ responseCode);
-            }
-
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -95,15 +83,16 @@ public class ServicoTask extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if(urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            try {
+                reader.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return  result;
-    }
-
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        progressDialog.dismiss();
-        resultadoAPI = s;
-        Snackbar.make(view, resultadoAPI, Snackbar.LENGTH_LONG).setAction("Action", null).show();
     }
 }
