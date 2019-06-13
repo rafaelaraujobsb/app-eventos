@@ -1,5 +1,6 @@
 package br.com.catlangos.eventando.evento;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -131,7 +132,7 @@ public class CriarEventoFragment extends Fragment {
                 if(position==0){
                     tv.setTextColor(Color.GRAY);
                 }else{
-                    tv.setTextColor(Color.BLACK);
+                    tv.setTextColor(Color.WHITE);
                 }
                 return view;
             }
@@ -146,7 +147,7 @@ public class CriarEventoFragment extends Fragment {
                 //String selectedItemText = (String) parent.getItemAtPosition(position);
                 if(position!=0){
                     TextView tv = (TextView) view;
-                    tv.setTextColor(Color.BLACK);
+                    tv.setTextColor(Color.GRAY);
                     categoria = spinner.getSelectedItem().toString();
                 }
             }
@@ -333,6 +334,7 @@ public class CriarEventoFragment extends Fragment {
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     private void configurarCalendario(){
         dataInicioEnvio = "";
         dataTerminoEnvio = "";
@@ -375,5 +377,6 @@ public class CriarEventoFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
+
     }
 }
