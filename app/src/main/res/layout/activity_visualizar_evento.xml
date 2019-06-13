@@ -2,10 +2,11 @@
 
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5fb0c9"
+        android:background="#525252"
         android:orientation="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true">
 
@@ -17,8 +18,11 @@
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                      android:orientation="vertical">
+        <LinearLayout android:layout_width="390dp" android:layout_height="1249dp"
+                      android:orientation="vertical"
+                      android:descendantFocusability="beforeDescendants"
+                      android:focusableInTouchMode="true"
+                      android:touchscreenBlocksFocus="true">
 
             <TextView
                     android:id="@+id/txtLogin"
@@ -35,7 +39,7 @@
             <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/login_title"
+                    android:layout_below="@+id/title"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="30dp"
@@ -170,7 +174,7 @@
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
-                            android:hint="@string/complemento"
+                            android:hint="@string/visualizar_complemento"
                             android:inputType="text|textMultiLine" android:textSize="18sp"/>
 
                     <TextView
@@ -180,7 +184,8 @@
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint=""
-                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
 
                     <TextView
                             android:id="@+id/txtHintDescricao"
@@ -220,6 +225,82 @@
                             android:inputType="text|textMultiLine"
                             android:textSize="24sp"/>
 
+                    <TextView
+                            android:id="@+id/txtHintDataInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="#FF4081"
+                            android:hint="@string/dataInicio"
+                            android:inputType="text|textMultiLine"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/txtDataInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintDataTermino"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="#FF4081"
+                            android:hint="@string/dataTermino"
+                            android:inputType="text|textMultiLine"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/txtDataTermino"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintHorarioInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="#FF4081"
+                            android:hint="@string/horarioInicio"
+                            android:inputType="text|textMultiLine"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHorarioInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHintHorarioTermino"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="#FF4081"
+                            android:hint="@string/horarioTermino"
+                            android:inputType="text|textMultiLine"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/txtHorarioTermino"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="#FF4081"
+                            android:hint=""
+                            android:inputType="text|textMultiLine"
+                            android:textSize="24sp"/>
+
                     <Button
                             android:id="@+id/btnParticiparEvento"
                             android:layout_width="fill_parent"
@@ -230,18 +311,6 @@
                             android:textAllCaps="false"
                             android:textColor="#fff"
                             android:textSize="18sp" />
-
-                    <!--<TextView
-                            android:text="Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp" android:id="@+id/txtData" android:textSize="18sp"
-                            android:paddingTop="10dp"/>-->
-
-                    <!--<CalendarView
-                            android:layout_width="match_parent"
-                            android:layoutMode="clipBounds"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/calendario"/>-->
 
                 </LinearLayout>
             </RelativeLayout>

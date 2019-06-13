@@ -1,5 +1,7 @@
 package br.com.catlangos.eventando.evento;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
@@ -12,14 +14,17 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import br.com.catlangos.eventando.MapaCriarEvento;
+import br.com.catlangos.eventando.mapas.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -28,6 +33,10 @@ public class CriarEventoFragment extends Fragment {
 
     private FirebaseDatabase fireBaseDatabase;
     private DatabaseReference dataBase;
+    private TextView txthorarioInicio;
+    private TextView txthorarioTermino;
+    private TextView txtDataInicio;
+    private TextView txtDataTermino;
     private Button btnAdicionarLocal;
     private Button btnCriarEvento;
     private EditText nome;
@@ -42,9 +51,14 @@ public class CriarEventoFragment extends Fragment {
     private Double longitude;
     private Spinner spinner;
     private String categoria;
-    private CalendarView calendario;
     private int REQUEST_CODE = 1;
     private List<String> categorias = new ArrayList<>();
+    private TimePickerDialog timePickerDialog;
+    private DatePickerDialog datePickerDialog;
+    private String dataInicioEnvio;
+    private String dataTerminoEnvio;
+    private String horarioInicioEnvio;
+    private String horarioTerminoEnvio;
 
     @Nullable
     @Override
@@ -56,6 +70,7 @@ public class CriarEventoFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        view.findViewById(R.id.mainLayout).requestFocus();
         fireBaseDatabase = FirebaseDatabase.getInstance();
         //Localiza o nó no banco de dados do firebase e guarda sua referência
         dataBase = fireBaseDatabase.getReference("/categorias");
@@ -68,15 +83,23 @@ public class CriarEventoFragment extends Fragment {
         rua = view.findViewById(R.id.txtRua);
         complemento = view.findViewById(R.id.txtComplemento);
         btnCriarEvento = view.findViewById(R.id.btnCriar);
+        btnAdicionarLocal = view.findViewById(R.id.btnLocal);
         descricao = view.findViewById(R.id.txtDescricao);
+        txthorarioInicio = view.findViewById(R.id.txtHorarioInicio);
+        txthorarioTermino = view.findViewById(R.id.txtHorarioTermino);
+        txtDataInicio = view.findViewById(R.id.txtDataInicio);
+        txtDataTermino = view.findViewById(R.id.txtDataTermino);
 
+        configurarCalendario();
+        configurarTxtHorarios();
         configurarBtnCriarEvento();
         configurarBtnAdicionarLocal(view);
-        //calendario = view.findViewById(R.id.calendario);
+
+
 
         dataBase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 categorias.clear();
 
                 //dataSnapShot contem os dados no local especificado pela referencia
@@ -89,14 +112,17 @@ public class CriarEventoFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) { }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
     }
 
 
     private void updateCategoria(View view) {
         spinner = view.findViewById(R.id.spnCategoria);
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, categorias){
+        if(!spinner.isAttachedToWindow()){
+            return;
+        }
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(requireActivity(), R.layout.spinner_item, categorias){
 
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
@@ -133,7 +159,6 @@ public class CriarEventoFragment extends Fragment {
     }
 
     private void configurarBtnAdicionarLocal(View view){
-        btnAdicionarLocal = view.findViewById(R.id.btnLocal);
         btnAdicionarLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,7 +209,7 @@ public class CriarEventoFragment extends Fragment {
         Evento evento = new Evento();
         evento.setBairro(Utils.Companion.editTextToString(bairro));
         evento.setCep(Utils.Companion.editTextToString(cep));
-        evento.setBairro(Utils.Companion.editTextToString(bairro));
+        evento.setComplemento(Utils.Companion.editTextToString(complemento));
         evento.setCidade(Utils.Companion.editTextToString(cidade));
         evento.setEstado(Utils.Companion.editTextToString(estado));
         evento.setCategoria(categoria);
@@ -193,23 +218,32 @@ public class CriarEventoFragment extends Fragment {
         evento.setRua(Utils.Companion.editTextToString(rua));
         evento.setLatitude(latitude);
         evento.setLongitude(longitude);
+        evento.setDataInicio(dataInicioEnvio);
+        evento.setDataTermino(dataTerminoEnvio);
 
-//        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-//            @Override
-//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-//                Calendar calendario = Calendar.getInstance();
-//                calendario.set(Calendar.YEAR, year);
-//                calendario.set(Calendar.MONTH, month);
-//                calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//
-//                SimpleDateFormat dateFormat = new SimpleDateFormat(calendario.getTime(), "dd/MM/yyyy");
-//                String selectedDate = dateFormat.format(new Date(year, month, dayOfMonth));
-//
-//            }
-//        });
-        //Calendar date = Calendar.getInstance();
-        //String selectedDate = dateFormat.format(new Date(calendario.getDate()));
-        //evento.setData(selectedDate);
+        if(horarioInicioEnvio.equals("") || horarioInicioEnvio==null){
+            evento.setHorarioInicio("");
+        }else{
+            evento.setHorarioInicio(horarioInicioEnvio);
+        }
+
+        if(horarioTerminoEnvio.equals("") || horarioTerminoEnvio==null){
+            evento.setHorarioTermino("");
+        }else{
+            evento.setHorarioTermino(horarioTerminoEnvio);
+        }
+
+        if(dataInicioEnvio.equals("") || dataInicioEnvio==null){
+            evento.setDataInicio("");
+        }else{
+            evento.setDataInicio(dataInicioEnvio);
+        }
+
+        if(dataTerminoEnvio.equals("") || dataTerminoEnvio==null){
+            evento.setDataTermino("");
+        }else{
+            evento.setDataTermino(dataTerminoEnvio);
+        }
         return evento;
     }
 
@@ -249,5 +283,97 @@ public class CriarEventoFragment extends Fragment {
                 }
             }
         }
+    }
+
+    private void configurarTxtHorarios(){
+        horarioInicioEnvio = "";
+        horarioTerminoEnvio= "";
+        txthorarioInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                        String horarioInicio = formatter.format(calendar.getTime());
+                        //String[] horaMinuto =  horarioInicio.split(":");
+
+                        txthorarioInicio.setText(getString(R.string.horarioInicio) + " " + horarioInicio);
+                        horarioInicioEnvio = horarioInicio;
+                    }
+                }, 0, 0, true);
+                timePickerDialog.show();
+            }
+        });
+
+        txthorarioTermino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                        String horarioTermino = formatter.format(calendar.getTime());
+                        //String[] horaMinuto =  horarioTermino.split(":");
+
+                        txthorarioTermino.setText(getString(R.string.horarioTermino) + " " + horarioTermino);
+                        horarioTerminoEnvio= horarioTermino;
+                    }
+                }, 0, 0, true);
+                timePickerDialog.show();
+            }
+        });
+    }
+
+    private void configurarCalendario(){
+        dataInicioEnvio = "";
+        dataTerminoEnvio = "";
+        txtDataInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendarAux = Calendar.getInstance();
+                datePickerDialog = new DatePickerDialog(requireContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.YEAR, year);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        dataInicioEnvio = formatter.format(calendar.getTime());
+                        txtDataInicio.setText(getString(R.string.dataInicio) + " " + dataInicioEnvio);
+                    }
+                }, calendarAux.get(Calendar.YEAR), calendarAux.get(Calendar.MONTH), calendarAux.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
+
+        txtDataTermino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendarAux = Calendar.getInstance();
+                datePickerDialog = new DatePickerDialog(requireContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.YEAR, year);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        dataTerminoEnvio = formatter.format(calendar.getTime());
+                        txtDataTermino.setText(getString(R.string.dataTermino) + " " + dataTerminoEnvio);
+                    }
+                }, calendarAux.get(Calendar.YEAR), calendarAux.get(Calendar.MONTH), calendarAux.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
     }
 }

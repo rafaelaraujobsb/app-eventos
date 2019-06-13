@@ -2,6 +2,7 @@ package br.com.catlangos.eventando.utils
 
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
@@ -29,6 +30,15 @@ class Utils {
             }
             return ""
         }
+
+
+        fun textViewToString(v1 : TextView) : String{
+            if(v1 != null){
+                return v1.text.toString()
+            }
+            return ""
+        }
+    }
 
         fun isCPF(CPF: String): Boolean {
             // considera-se erro CPF's formados por uma sequencia de numeros iguais
@@ -99,5 +109,4 @@ class Utils {
             }
 
         }
-    }
 }

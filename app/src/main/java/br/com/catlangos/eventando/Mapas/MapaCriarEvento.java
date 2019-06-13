@@ -1,4 +1,4 @@
-package br.com.catlangos.eventando;
+package br.com.catlangos.eventando.mapas;
 
 import android.Manifest;
 import android.content.Context;
@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import br.com.catlangos.eventando.R;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -100,7 +101,10 @@ public class MapaCriarEvento extends FragmentActivity implements OnMapReadyCallb
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getBaseContext(), CriarEventoFragment.class);
+                if(getLatLngSelecionado() == null){
+                    Toast.makeText(v.getContext(), "Pressione e segure para definir um local", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.putExtra(LATITUDE, getLatLngSelecionado().latitude);
                 intent.putExtra(LONGITUDE, getLatLngSelecionado().longitude);
@@ -157,10 +161,14 @@ public class MapaCriarEvento extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void getLastLocation(){
-        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
-
+        try{
+            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            LatLng actualLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+        }catch(Exception e){
+            LatLng actualLocation = new LatLng(-15.7896196,-47.8911385);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(actualLocation, 13));
+        }
     }
 
     public LatLng getLatLngSelecionado() {

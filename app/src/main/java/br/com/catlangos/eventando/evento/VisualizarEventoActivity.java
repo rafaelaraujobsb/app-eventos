@@ -17,15 +17,6 @@ import java.util.*;
 
 public class VisualizarEventoActivity extends AppCompatActivity implements Serializable {
 
-    TextView nome;
-    TextView cep;
-    TextView estado;
-    TextView cidade;
-    TextView bairro;
-    TextView rua;
-    TextView complemento;
-    TextView descricao;
-    TextView categoria;
     Button btnParticiparEvento;
     private FirebaseDatabase database;
     private DatabaseReference reference;
@@ -37,6 +28,19 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
     private List<String> usuarios = new ArrayList<>();
     private Evento evento;
     private String chaveEvento;
+    TextView nome;
+    TextView cep;
+    TextView estado;
+    TextView cidade;
+    TextView bairro;
+    TextView rua;
+    TextView complemento;
+    TextView descricao;
+    TextView categoria;
+    TextView dataInicio;
+    TextView dataTermino;
+    TextView horarioInicio;
+    TextView horarioTermino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,10 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         complemento = findViewById(R.id.txtComplemento);
         descricao = findViewById(R.id.txtDescricao);
         categoria = findViewById(R.id.txtCategoria);
+        dataInicio = findViewById(R.id.txtDataInicio);
+        dataTermino = findViewById(R.id.txtDataTermino);
+        horarioInicio = findViewById(R.id.txtHorarioInicio);
+        horarioTermino = findViewById(R.id.txtHorarioTermino);
         btnParticiparEvento = findViewById(R.id.btnParticiparEvento);
 
         database = FirebaseDatabase.getInstance();
@@ -70,6 +78,10 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         complemento.setText(evento.getComplemento());
         descricao.setText(evento.getDescricao());
         categoria.setText(evento.getCategoria());
+        dataInicio.setText(evento.getDataInicio());
+        dataTermino.setText(evento.getDataTermino());
+        horarioInicio.setText(evento.getHorarioInicio());
+        horarioTermino.setText(evento.getHorarioTermino());
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -145,6 +157,5 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                 });
             }
         });
-
     }
 }

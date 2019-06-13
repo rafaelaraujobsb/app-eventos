@@ -2,10 +2,12 @@
 
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5fb0c9"
+        android:background="#525252"
         android:orientation="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true">
 
@@ -17,8 +19,11 @@
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="1089dp"
+                      android:orientation="vertical"
+                      android:descendantFocusability="beforeDescendants"
+                      android:focusableInTouchMode="true"
+                      android:touchscreenBlocksFocus="true">
 
             <TextView
                     android:id="@+id/txtLogin"
@@ -35,7 +40,7 @@
             <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/login_title"
+                    android:layout_below="@+id/title"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="30dp"
@@ -59,11 +64,21 @@
                             android:hint="@string/nome_do_evento"
                             android:inputType="textPersonName"/>
 
+                    <Button
+                            android:id="@+id/btnLocal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="22dp"
+                            android:background="#d67601"
+                            android:text="Adicionar Local"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="18sp"/>
+
                     <EditText
                             android:id="@+id/txtCep"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:singleLine="true"
                             android:drawableTint="#FF4081"
                             android:hint="@string/CEP"
@@ -119,11 +134,6 @@
                             android:hint="@string/complemento"
                             android:inputType="text|textMultiLine"/>
 
-                    <Button
-                            android:text="Adicionar Local"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/btnLocal"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
                     <EditText
                             android:id="@+id/txtDescricao"
                             android:layout_width="match_parent"
@@ -138,36 +148,38 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/spnCategoria"/>
-                    <!--<TextView
-                            android:text="Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp" android:id="@+id/txtData" android:textSize="18sp"
-                            android:paddingTop="10dp"/>-->
 
-                    <!--<CalendarView
-                            android:layout_width="match_parent"
-                            android:layoutMode="clipBounds"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/calendario"/>-->
-                    <RadioGroup
+                    <TextView
+                            android:text="@string/dataInicio"
+                            android:id="@+id/txtDataInicio"
                             android:layout_width="match_parent"
                             android:layout_height="37dp"
-                            android:orientation="horizontal"
-                            android:paddingTop="10px"
-                            android:paddingBottom="10px">
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
 
-                        <RadioButton
-                                android:text="Publico"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/radioPublico"
-                                android:layout_weight="1"/>
+                    <TextView
+                            android:text="@string/dataTermino"
+                            android:id="@+id/txtDataTermino"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
 
-                        <RadioButton
-                                android:text="Privado"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/radioPrivado"
-                                android:layout_weight="1"/>
-                    </RadioGroup>
+                    <TextView
+                            android:text="@string/horarioInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp"
+                            android:id="@+id/txtHorarioInicio"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
+
+                    <TextView
+                            android:text="@string/horarioTermino"
+                            android:layout_width="match_parent"
+                            android:layout_height="37dp"
+                            android:id="@+id/txtHorarioTermino"
+                            android:textSize="18sp"
+                            android:paddingTop="15dp"/>
 
                     <Button
                             android:id="@+id/btnCriar"

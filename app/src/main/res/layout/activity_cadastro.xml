@@ -2,15 +2,16 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#5fb0c9"
+            android:background="#525252"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
                   android:orientation="vertical">
 
         <TextView
-                android:id="@+id/login_title"
+                android:id="@+id/title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -24,7 +25,7 @@
         <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/login_title"
+                android:layout_below="@+id/title"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="30dp"
@@ -46,7 +47,7 @@
                         android:drawableTint="#FF4081"
                         android:singleLine="true"
                         android:hint="Nome"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"/>
 
                 <EditText
                         android:id="@+id/txtEmail"
@@ -93,11 +94,11 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="#D601B3"
+                        android:background="#d67601"
                         android:text="Selecionar Interesses"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
 
                 <EditText
                         android:id="@+id/txtSenha"
@@ -128,7 +129,7 @@
                         android:text="Cadastrar"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
