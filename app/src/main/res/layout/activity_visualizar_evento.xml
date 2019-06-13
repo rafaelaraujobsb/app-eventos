@@ -6,311 +6,312 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#525252"
         android:orientation="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true">
 
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".evento.CriarEventoFragment" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            tools:context=".evento.CriarEventoFragment"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+    >
 
-        <LinearLayout android:layout_width="390dp" android:layout_height="1249dp"
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
                       android:orientation="vertical"
-                      android:descendantFocusability="beforeDescendants"
-                      android:focusableInTouchMode="true"
-                      android:touchscreenBlocksFocus="true">
+        >
 
             <TextView
                     android:id="@+id/txtLogin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="44dp"
                     android:gravity="center_horizontal"
                     android:text="Evento encontrado"
-                    android:textColor="#fff"
-                    android:textSize="26sp"
-                    android:textStyle="bold"/>
+                    style="@style/TitleStyle"
+            />
 
             <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/title"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="30dp"
-                    android:background="#fff"
-                    android:elevation="4dp"
+                    android:layout_below="@+id/login_title"
                     android:orientation="vertical"
-                    android:padding="20dp">
+            >
 
                 <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingTop="30dp">
+                >
 
                     <TextView
                             android:id="@+id/txHintNome"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:singleLine="true"
+                            android:layout_marginTop="16dp"
                             android:hint="@string/nome_do_evento"
-                            android:inputType="textPersonName" android:textSize="18sp"/>
+                            android:inputType="textPersonName"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtNome"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:singleLine="true"
+                            android:layout_marginTop="16dp"
                             android:hint=""
-                            android:inputType="textPersonName" android:textSize="24sp"/>
+                            android:inputType="textPersonName"
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintCep"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/CEP"
-                            android:inputType="numberDecimal" android:textSize="18sp"/>
+                            android:inputType="numberDecimal"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtCep"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
-                            android:inputType="numberDecimal" android:textSize="24sp"/>
+                            android:inputType="numberDecimal"
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintEstado"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/estado"
-                            android:inputType="textAutoComplete" android:textSize="18sp"/>
+                            android:inputType="textAutoComplete"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtEstado"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
-                            android:inputType="textAutoComplete" android:textSize="24sp"/>
+                            android:inputType="textAutoComplete"
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintCidade"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/cidade"
-                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtCidade"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
-                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintBairro"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/bairro"
-                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtBairro"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
-                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintRua"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/rua"
-                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtRua"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
-                            android:inputType="text|textMultiLine" android:textSize="24sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintComplemento"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/visualizar_complemento"
-                            android:inputType="text|textMultiLine" android:textSize="18sp"/>
+                            android:inputType="text|textMultiLine"
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtComplemento"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintDescricao"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/descricao"
                             android:inputType="text|textMultiLine"
-                            android:textSize="18sp"/>
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtDescricao"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
+                            android:layout_marginTop="16dp"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintCategoria"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/categoria"
                             android:inputType="text|textMultiLine"
-                            android:textSize="18sp"/>
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtCategoria"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+
+                    />
 
                     <TextView
                             android:id="@+id/txtHintDataInicio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/dataInicio"
                             android:inputType="text|textMultiLine"
-                            android:textSize="18sp"/>
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+
+                    />
 
                     <TextView
                             android:id="@+id/txtDataInicio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintDataTermino"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/dataTermino"
                             android:inputType="text|textMultiLine"
-                            android:textSize="18sp"/>
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtDataTermino"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintHorarioInicio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/horarioInicio"
                             android:inputType="text|textMultiLine"
-                            android:textSize="18sp"/>
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtHorarioInicio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <TextView
                             android:id="@+id/txtHintHorarioTermino"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableTint="#FF4081"
                             android:hint="@string/horarioTermino"
                             android:inputType="text|textMultiLine"
-                            android:textSize="18sp"/>
+                            style="@style/ParagraphStyle"
+                            android:layout_marginLeft="16dp"
+                    />
 
                     <TextView
                             android:id="@+id/txtHorarioTermino"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableTint="#FF4081"
                             android:hint=""
                             android:inputType="text|textMultiLine"
-                            android:textSize="24sp"/>
+                            style="@style/ParagraphStyle"
+                            android:textSize="@dimen/subTitleTextSize"
+                            android:layout_marginLeft="@dimen/marginSize"
+                    />
 
                     <Button
                             android:id="@+id/btnParticiparEvento"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="22dp"
-                            android:background="#D601B3"
                             android:text="Participar do Evento"
-                            android:textAllCaps="false"
-                            android:textColor="#fff"
-                            android:textSize="18sp" />
+                            style="@style/PrimaryButton"
+                    />
 
                 </LinearLayout>
             </RelativeLayout>

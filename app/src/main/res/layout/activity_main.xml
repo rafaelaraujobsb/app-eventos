@@ -1,102 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_height="match_parent"
-                android:background="#525252"
                 android:orientation="vertical"
                 android:scrollbarAlwaysDrawVerticalTrack="true" android:layout_width="match_parent"
-                android:visibility="visible">
+                android:visibility="visible"
+>
 
     <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/marginSize"
             android:gravity="center_horizontal"
-            android:text="Login Teste"
-            android:textColor="#fff"
-            android:textSize="26sp"
-            android:textStyle="bold"/>
+            android:text="Login"
+            style="@style/TitleStyle"
+    />
 
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="70dp"
-            android:background="#fff"
+            android:layout_below="@+id/login_title"
             android:elevation="4dp"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_marginTop="50dp"
+    >
 
         <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="30dp">
+                android:layout_marginTop="30dp"
+        >
 
             <EditText
                     android:id="@+id/txtEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTint="#FF4081"
+                    android:layout_marginTop="16dp"
                     android:singleLine="true"
                     android:hint="Email"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    style="@style/TextBox"
+            />
 
             <EditText
                     android:id="@+id/txtSenha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:singleLine="true"
-                    android:drawableTint="#FF4081"
                     android:hint="Senha"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    style="@style/TextBox"
+            />
+
+            <Button
+                    android:id="@+id/btnEntrar"
+                    android:text="Entrar"
+                    style="@style/PrimaryButton"
+                    android:layout_marginTop="30dp"
+            />
 
             <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/or"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="OU"
+                    style="@style/ParagraphStyle"
+            />
+
+            <Button
                     android:layout_gravity="right"
-                    android:paddingTop="5dp"
-                    android:clickable="true"
+                    android:layout_marginTop="16dp"
                     android:onClick="onClick"
                     android:id="@+id/txtResetarSenha"
                     android:gravity="center"
-                    android:text="Esqueceu sua Senha?"/>
+                    android:text="Esqueceu sua Senha?"
+                    style="@style/SecondaryButton"
+            />
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+            <Button
                     android:layout_gravity="right"
-                    android:paddingTop="5dp"
-                    android:clickable="true"
                     android:onClick="onClick"
                     android:id="@+id/txtCadastrar"
                     android:gravity="center"
-                    android:text="Cadastre-se"/>
-            <Button
-                    android:id="@+id/btnEntrar"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="22dp"
-                    android:background="#d67601"
-                    android:text="Entrar"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="18sp"/>
+                    android:text="Cadastre-se"
+                    android:layout_marginTop="16dp"
+                    style="@style/SecondaryButton"
+            />
         </LinearLayout>
     </RelativeLayout>
 
-    <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/user_profile_image_background"
-            android:elevation="4dp"
-            android:src="@drawable/person"/>
 </RelativeLayout>

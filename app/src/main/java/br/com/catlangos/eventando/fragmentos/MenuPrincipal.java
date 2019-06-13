@@ -117,29 +117,6 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
             }
         });
 
-        if(eventos.isEmpty()) {
-            query3 = reference3.child("Eventos");
-            query3.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot ref : dataSnapshot.getChildren()){
-                        Evento evento = ref.getValue(Evento.class);
-                        if(evento != null){
-                            eventos.add(evento);
-                        }
-                    }
-                    RecyclerView recyclerView = requireActivity().findViewById(R.id.recyclerViewMenuPrincipal);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    recyclerView.setAdapter(new MeuAdaptador(eventos, ctx));
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
     }
 
     public static <T extends List<?>> T cast(Object obj) {
