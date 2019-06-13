@@ -34,7 +34,7 @@ public class MeuAdaptador extends RecyclerView.Adapter<MeuViewHolder> {
     public void onBindViewHolder(MeuViewHolder viewHolder, int position) {
         Evento evento = eventos.get(position);
         viewHolder.txtNomeEvento.setText(evento.getNome());
-        viewHolder.dataEvento.setText(evento.getData());
+        viewHolder.dataEvento.setText(evento.getDataInicio());
         viewHolder.categoriaEvento.setText(evento.getCategoria());
         mapEvento.put(position, evento);
     }

@@ -38,7 +38,7 @@ class Utils {
             }
             return ""
         }
-    }
+
 
         fun isCPF(CPF: String): Boolean {
             // considera-se erro CPF's formados por uma sequencia de numeros iguais
@@ -109,4 +109,5 @@ class Utils {
             }
 
         }
+    }
 }
