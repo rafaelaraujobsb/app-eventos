@@ -8,7 +8,7 @@ import java.util.*
 
 class Utils {
 
-    public fun  apresentarMensagem(view: View, message: String){
+    fun  apresentarMensagem(view: View, message: String){
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show()
     }
 
