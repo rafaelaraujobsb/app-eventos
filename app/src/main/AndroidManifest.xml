@@ -16,11 +16,10 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-
-        <uses-library
-                android:name="org.apache.http.legacy"
-                android:required="false"/>
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true">
+        <activity android:name=".evento.VisualizarEventoActivity">
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,30 +32,38 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key"/>
 
+        <activity
+                android:name=".mapas.MapsBuscarEvento"
+                android:label="@string/title_activity_maps">
+        </activity>
+
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false"/>
+
         <activity android:name=".evento.CriarEventoActivity">
         </activity>
         <activity
-                android:name=".Mapa"
-                android:label="@string/title_activity_mapa">
+                android:name=".mapas.MapaCriarEvento"
+                android:label="@string/title_activity_mapa"
+                android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".login.LoginActivity">
-        <activity android:name=".home.HomeActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-                android:name=".login.LoginActivity">
-        </activity>
-        <activity android:name=".login.RedefinicaoSenhaActivity">
-        </activity>
-        <activity android:name=".login.CadastroActivity">
-        </activity>
-          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".home.HomeActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".login.RedefinicaoSenhaActivity">
+        </activity>
+        <activity android:name=".login.CadastroActivity">
+        </activity>
     </application>
 
 </manifest>

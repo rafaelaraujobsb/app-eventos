@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import br.com.catlangos.eventando.R;
+import br.com.catlangos.eventando.evento.BuscarEventoFragment;
+import br.com.catlangos.eventando.evento.CriarEventoFragment;
 import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,6 +51,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MenuPrincipal()).commit();
                 break;
+
+            case R.id.nav_cadastrar_evento:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new CriarEventoFragment()).commit();
+                break;
+
+            case R.id.nav_buscar_evento:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new BuscarEventoFragment()).commit();
+                break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);

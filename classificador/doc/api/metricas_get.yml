@@ -1,0 +1,22 @@
+Metricas do treinamento 
+---
+tags:
+  - Grupos
+responses:
+  200:
+    description: Lista de grupos sugeridos para o usuário
+    examples:
+      resposta: {
+        "resultado": [
+          "Grupo A", "Grupo B", "Grupo C"
+        ]
+      }
+
+  500:
+    description: Erro Interno
+    examples:
+      resposta: {
+        "status": 500,
+        "mensagem": Erro Interno.
+      }
+      
