@@ -144,9 +144,13 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                                 usuarios.add(chaveUsuario);
                                 btnParticiparEvento.setText("Sair do Evento");
                             }
-                            Map<String, Object> map = new HashMap<>();
-                            map.put(String.valueOf(usuarios.size()), chaveUsuario);
-                            issue.getRef().child("participantes").updateChildren(map);
+
+                            for(int i = 0; i < usuarios.size(); i++) {
+                                Map<String, Object> map = new HashMap<>();
+                                map.put(String.valueOf(i), usuarios.get(i));
+                                issue.getRef().child("participantes").updateChildren(map);
+                            }
+
                         }
                     }
 
