@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.navigation.NavHost;
+import br.com.catlangos.eventando.home.HomeActivity;
 import br.com.catlangos.eventando.mapas.MapsBuscarEvento;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
@@ -116,5 +118,11 @@ public class BuscarEventoFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
     }
 }

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,11 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.Navigator;
+import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
+import br.com.catlangos.eventando.home.HomeActivity;
 import br.com.catlangos.eventando.mapas.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.utils.Utils;
@@ -188,6 +194,9 @@ public class CriarEventoFragment extends Fragment {
         try {
             final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Eventos");
             final String chave = reference.push().getKey();
+            if(chave == null){
+                Toast.makeText(requireContext(), "Erro ao criar evento, tente novamente mais tarde!", Toast.LENGTH_LONG).show();
+            }
             evento.setId(chave);
             reference.child(chave).setValue(evento).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -200,7 +209,9 @@ public class CriarEventoFragment extends Fragment {
                 }
             });
             Toast.makeText(requireContext(), "Evento criado com sucesso!", Toast.LENGTH_LONG).show();
-            getActivity().finish();
+            requireActivity().finish();
+            Intent intent = new Intent(requireContext(), HomeActivity.class);
+            startActivity(intent);
         }catch (Exception e){
             Toast.makeText(requireContext(), "Erro ao criar evento, tente novamente mais tarde!", Toast.LENGTH_LONG).show();
         }
@@ -280,7 +291,7 @@ public class CriarEventoFragment extends Fragment {
                         bairro.setText(endereco.getSubLocality());
                     }
                 }catch(Exception e){
-
+                    Toast.makeText(requireContext(), "Não foi possível determinar o local", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -379,4 +390,13 @@ public class CriarEventoFragment extends Fragment {
         });
 
     }
+
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        //Navigation.findNavController(v).navigate(R.id.action_fragmento_2);
+//        Navigation.findNavController(getView()).navigate(R.id.);
+//    }
+
+
 }

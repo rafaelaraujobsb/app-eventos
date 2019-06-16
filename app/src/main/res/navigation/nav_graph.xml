@@ -12,11 +12,13 @@
         <action
             android:id="@+id/action_mapa"
             app:destination="@id/fragmentMapa"/>
+        <action android:id="@+id/action_criarEventoFragment_to_homeActivity" app:destination="@id/homeActivity"/>
     </fragment>
 
     <fragment android:id="@+id/fragmentMapa"
               android:name="br.com.catlangos.eventando.mapas.MapaCriarEvento"
               android:label="activity_mapa"
-              tools:layout="@layout/activity_mapa">
-    </fragment>
+              tools:layout="@layout/activity_mapa"/>
+    <activity android:id="@+id/homeActivity" android:name="br.com.catlangos.eventando.home.HomeActivity"
+              android:label="activity_home" tools:layout="@layout/activity_home"/>
 </navigation>

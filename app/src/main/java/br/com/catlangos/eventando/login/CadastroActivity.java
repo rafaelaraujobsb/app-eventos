@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.home.HomeActivity;
+import br.com.catlangos.eventando.utils.MaskEditUtil;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -69,6 +70,9 @@ public class CadastroActivity extends AppCompatActivity {
         txtConfirmarSenha = findViewById(R.id.txtConfirmarSenha);
         btnCadastrar = findViewById(R.id.btnCadastrar);
         btnInteresses = findViewById(R.id.btnInteresses);
+
+        numCpf.addTextChangedListener(MaskEditUtil.mask(numCpf, MaskEditUtil.FORMAT_CPF));
+        dateDataNascimento.addTextChangedListener(MaskEditUtil.mask(dateDataNascimento, MaskEditUtil.FORMAT_DATE));
 
         // Recuperar a lista de interesses
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -154,7 +158,9 @@ public class CadastroActivity extends AppCompatActivity {
                         Toast.makeText(CadastroActivity.this, "Ao menos 5 categorias de interesse devem ser selecionadas", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if(!Utils.Companion.isCPF(numCpf.getText().toString())) {
+
+                    String cpf = MaskEditUtil.unmask(numCpf.getText().toString());
+                    if(!Utils.Companion.isCPF(cpf)) {
                         Toast.makeText(CadastroActivity.this, "O CPF informado é inválido. Favor digitar novamente.", Toast.LENGTH_LONG).show();
                         return;
                     }
@@ -230,4 +236,6 @@ public class CadastroActivity extends AppCompatActivity {
         }
         return null;
     }
+
+
 }
