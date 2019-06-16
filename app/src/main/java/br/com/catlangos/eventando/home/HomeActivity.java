@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.evento.BuscarEventoFragment;
 import br.com.catlangos.eventando.evento.CriarEventoFragment;
+import br.com.catlangos.eventando.evento.MeusEventosFragment;
 import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
 import com.google.android.material.navigation.NavigationView;
 
@@ -61,6 +62,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new BuscarEventoFragment()).commit();
                 break;
+
+            case R.id.nav_meus_eventos:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new MeusEventosFragment()).commit();
 
         }
 
