@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,6 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavHost;
-import androidx.navigation.Navigation;
-import androidx.navigation.Navigator;
-import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
 import br.com.catlangos.eventando.home.HomeActivity;
 import br.com.catlangos.eventando.mapas.MapaCriarEvento;
 import br.com.catlangos.eventando.R;
@@ -31,7 +26,6 @@ import com.google.firebase.database.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -391,12 +385,7 @@ public class CriarEventoFragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        //Navigation.findNavController(v).navigate(R.id.action_fragmento_2);
-//        Navigation.findNavController(getView()).navigate(R.id.);
-//    }
+
 
 
 }

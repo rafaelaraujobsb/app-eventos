@@ -32,7 +32,7 @@ public class MenuPrincipal extends Fragment implements MeuViewHolder.OnEventoCli
     private Query query;
     private Query query2;
     private DatabaseReference reference2;
-    List<Evento> eventos = new ArrayList<>();
+    private List<Evento> eventos = new ArrayList<>();
     private FloatingActionButton btnCadastrarEvento;
     private List<String> lstCategoriasTraduzidas = new ArrayList<>();
     MeuViewHolder.OnEventoClickListener ctx;

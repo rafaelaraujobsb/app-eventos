@@ -8,6 +8,9 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.evento.BuscarEventoFragment;
 import br.com.catlangos.eventando.evento.CriarEventoFragment;
@@ -16,6 +19,11 @@ import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+
+    private final static String MENU_PRINCIPAL = "MENU_PRINCIPAL";
+    private final static String CRIAR_EVENTO = "CRIAR_EVENTO";
+    private final static String BUSCAR_EVENTO = "BUSCAR_EVENTO";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +57,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MenuPrincipal()).commit();
+                        new MenuPrincipal(), MENU_PRINCIPAL).commit();
                 break;
 
             case R.id.nav_cadastrar_evento:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CriarEventoFragment()).commit();
+                        new CriarEventoFragment(), CRIAR_EVENTO).commit();
                 break;
 
             case R.id.nav_buscar_evento:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BuscarEventoFragment()).commit();
+                        new BuscarEventoFragment(), BUSCAR_EVENTO).commit();
                 break;
 
         }
@@ -72,8 +80,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+
+        CriarEventoFragment criarEventoFragment = (CriarEventoFragment)getSupportFragmentManager().findFragmentByTag(CRIAR_EVENTO);
+        BuscarEventoFragment buscarEventoFragment = (BuscarEventoFragment)getSupportFragmentManager().findFragmentByTag(BUSCAR_EVENTO);
+
+        if(criarEventoFragment != null && criarEventoFragment.isVisible()){
+            voltarAoMenu();
+        }else if(buscarEventoFragment != null && buscarEventoFragment.isVisible()){
+            voltarAoMenu();
+        }else{
             super.onBackPressed();
         }
+    }
+
+    private void voltarAoMenu(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new MenuPrincipal()).commit();
     }
 }
