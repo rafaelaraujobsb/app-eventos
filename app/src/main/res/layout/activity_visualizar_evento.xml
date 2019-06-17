@@ -305,13 +305,21 @@
                     />
 
                     <Button
+                            android:id="@+id/btnFeedback"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="22dp"
+                            android:text="Deixe seu Feedback"
+                            style="@style/PrimaryButton"/>
+
+                    <Button
                             android:id="@+id/btnParticiparEvento"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="22dp"
                             android:text="Participar do Evento"
-                            style="@style/PrimaryButton"
-                    />
+                            style="@style/PrimaryButton"/>
+
 
                 </LinearLayout>
             </RelativeLayout>

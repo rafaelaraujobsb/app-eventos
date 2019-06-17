@@ -1,28 +1,33 @@
 package br.com.catlangos.eventando.evento;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import br.com.catlangos.eventando.R;
-import br.com.catlangos.eventando.login.Perfil;
+import br.com.catlangos.eventando.utils.AlertType;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
 import java.util.*;
 
 public class VisualizarEventoActivity extends AppCompatActivity implements Serializable {
 
     Button btnParticiparEvento;
+    Button btnDeixarFeedback;
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private DatabaseReference reference2;
+    private DatabaseReference reference3;
     private Query query;
     private Query eventoQuery;
+    private Query feedbackQuery;
     private String chaveUsuario;
     private String email;
     private List<String> usuarios = new ArrayList<>();
@@ -63,6 +68,7 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         horarioInicio = findViewById(R.id.txtHorarioInicio);
         horarioTermino = findViewById(R.id.txtHorarioTermino);
         btnParticiparEvento = findViewById(R.id.btnParticiparEvento);
+        btnDeixarFeedback = findViewById(R.id.btnFeedback);
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
@@ -101,7 +107,14 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                             for (DataSnapshot issue : dataSnapshot.getChildren()) {
                                 chaveEvento = issue.getKey();
                                 if(issue.child("participantes").getValue() != null) {
-                                    usuarios.add(cast(issue.child("participantes").getValue()).get(0).toString());
+                                    try {
+                                        List<String> lst = cast(issue.child("participantes").getValue());
+                                        for(int i = 0; i < lst.size(); i++) {
+                                            usuarios.add(lst.get(i));
+                                        }
+                                    } catch (ClassCastException e) {
+                                        usuarios.add(issue.child("participantes").getValue().toString());
+                                    }
                                 }
                             }
                         }
@@ -162,8 +175,50 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                 });
             }
         });
+
+        final EditText editText = new EditText(this);
+        btnDeixarFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("Deixe seu comentário abaixo:", VisualizarEventoActivity.this, editText, null, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showSimpleDialog(editText.getText().toString(),VisualizarEventoActivity.this, null);
+                    }
+                });
+            }
+        });
     }
     public static <T extends List<?>> T cast(Object obj) {
         return (T) obj;
+    }
+
+    public static void showSimpleDialog(String message, Context context, AlertType alertType) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+        alertDialog.setMessage(message);
+        alertDialog.setNeutralButton("OK", null);
+        if (alertType == null) {
+            alertDialog.setIcon(AlertType.INFO.getDrawable());
+            alertDialog.setTitle(AlertType.INFO.getTitle());
+        } else {
+            alertDialog.setIcon(alertType.getDrawable());
+            alertDialog.setTitle(alertType.getTitle());
+        }
+        alertDialog.show();
+    }
+
+    public static void showInputDialog(String message, final Context context, EditText edt, AlertType alertType, DialogInterface.OnClickListener okClick) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+        alertDialog.setMessage(message);
+        alertDialog.setView(edt);
+        alertDialog.setPositiveButton("Ok", okClick);
+        if (alertType == null) {
+            alertDialog.setIcon(AlertType.INFO.getDrawable());
+            alertDialog.setTitle(AlertType.INFO.getTitle());
+        } else {
+            alertDialog.setIcon(alertType.getDrawable());
+            alertDialog.setTitle(alertType.getTitle());
+        }
+        alertDialog.show();
     }
 }
