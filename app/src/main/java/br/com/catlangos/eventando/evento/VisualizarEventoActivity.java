@@ -31,6 +31,7 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
     private String chaveUsuario;
     private String email;
     private List<String> usuarios = new ArrayList<>();
+    private List<String> feedbacks = new ArrayList<>();
     private Evento evento;
     private String chaveEvento;
     TextView nome;
@@ -149,8 +150,11 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                             if(usuarios.contains(chaveUsuario)) {
                                 for(int i = 0; i < usuarios.size(); i++) {
                                     if(usuarios.get(i).equals(chaveUsuario)) {
-                                        usuarios.remove(i);
                                         btnParticiparEvento.setText("Participar do Evento");
+                                        Map<String, Object> map = new HashMap<>();
+                                        map.put(String.valueOf(i), null);
+                                        issue.getRef().child("participantes").updateChildren(map);
+                                        usuarios.remove(i);
                                         break;
                                     }
                                 }
@@ -184,6 +188,39 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         showSimpleDialog(editText.getText().toString(),VisualizarEventoActivity.this, null);
+
+                        feedbackQuery = reference2.child("Eventos").orderByChild("nome").equalTo(evento.getNome());
+                        feedbackQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                                    if(issue.child("feedbacks").getValue() != null) {
+                                        try {
+                                            List<String> lst = cast(issue.child("feedbacks").getValue());
+                                            for(int i = 0; i < lst.size(); i++) {
+                                                feedbacks.add(lst.get(i));
+                                            }
+                                        } catch (ClassCastException e) {
+                                            feedbacks.add(issue.child("feedbacks").getValue().toString());
+                                        }
+                                    }
+
+                                    feedbacks.add(editText.getText().toString());
+
+                                    for(int i = 0; i < feedbacks.size(); i++) {
+                                        Map<String, Object> map = new HashMap<>();
+                                        map.put(String.valueOf(i), feedbacks.get(i));
+                                        issue.getRef().child("feedbacks").updateChildren(map);
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -198,8 +235,8 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         alertDialog.setMessage(message);
         alertDialog.setNeutralButton("OK", null);
         if (alertType == null) {
-            alertDialog.setIcon(AlertType.INFO.getDrawable());
-            alertDialog.setTitle(AlertType.INFO.getTitle());
+            alertDialog.setIcon(AlertType.AGRADECIMENTO.getDrawable());
+            alertDialog.setTitle(AlertType.AGRADECIMENTO.getTitle());
         } else {
             alertDialog.setIcon(alertType.getDrawable());
             alertDialog.setTitle(alertType.getTitle());
@@ -213,8 +250,8 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         alertDialog.setView(edt);
         alertDialog.setPositiveButton("Ok", okClick);
         if (alertType == null) {
-            alertDialog.setIcon(AlertType.INFO.getDrawable());
-            alertDialog.setTitle(AlertType.INFO.getTitle());
+            alertDialog.setIcon(AlertType.FEEDBACK.getDrawable());
+            alertDialog.setTitle(AlertType.FEEDBACK.getTitle());
         } else {
             alertDialog.setIcon(alertType.getDrawable());
             alertDialog.setTitle(alertType.getTitle());
