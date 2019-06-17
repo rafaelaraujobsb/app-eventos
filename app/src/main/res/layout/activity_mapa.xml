@@ -18,16 +18,10 @@
             android:layout_height="?attr/actionBarSize"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
 
-    <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            android:layout_gravity="bottom"
-            android:background="#d67601"
-            android:textAllCaps="false"
-            android:textColor="#fff"
+    <Button android:layout_gravity="bottom"
             android:id="@+id/btnSelecionarLocal"
             android:text="@string/descConfirmar"
-            android:textSize="18sp"/>
-
+            style="@style/PrimaryButton"
+            android:layout_marginBottom="@dimen/marginSize"
+    />
 </FrameLayout>

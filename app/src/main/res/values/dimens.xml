@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Text Sizes-->
+    <dimen name="titleTextSize">40sp</dimen>
+    <dimen name="subTitleTextSize">22sp</dimen>
+    <dimen name="paragraphTextSize">16sp</dimen>
+    <dimen name="primaryButtonTextSize">18sp</dimen>
+    <dimen name="secondaryButtonTextSize">16sp</dimen>
+
+    <!--General Sizes-->
+    <dimen name="marginSize">32dp</dimen>
+    <dimen name="cornersSize">8dp</dimen>
+    <dimen name="boxHeightSize">40dp</dimen>
+    <dimen name="paddingSize">5dp</dimen>
+</resources>

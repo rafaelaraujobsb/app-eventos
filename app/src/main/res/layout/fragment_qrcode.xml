@@ -21,11 +21,14 @@
             android:layout_height="match_parent"
             android:id="@+id/imgQrcode"/>
     <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnGerar" android:layout_marginBottom="139dp" android:layout_alignBottom="@+id/imgQrcode"
-            android:layout_marginEnd="157dp" android:layout_alignEnd="@+id/imgQrcode" android:layout_marginStart="166dp"
-            android:layout_alignStart="@+id/imgQrcode" android:layout_alignTop="@+id/recyclerView"
-            android:layout_marginTop="536dp"/>
+            android:text="Gerar QRcode"
+            android:id="@+id/btnGerar"
+            android:layout_marginBottom="139dp"
+            android:layout_alignBottom="@+id/imgQrcode"
+            android:layout_alignEnd="@+id/imgQrcode"
+            android:layout_alignStart="@+id/imgQrcode"
+            android:layout_alignTop="@+id/recyclerView"
+            android:layout_marginTop="536dp"
+            style="@style/PrimaryButton"
+    />
 </RelativeLayout>

@@ -13,20 +13,7 @@
         <item android:id="@+id/nav_buscar_evento"
               android:icon="@drawable/ic_search"
               android:title="Buscar Evento"/>
-        <item android:id="@+id/nav_qrcode"
-              android:icon="@drawable/ic_chat"
-              android:title="Gerador de Ingressos - QrCode"/>
-    </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item android:id="@+id/nav_share"
-                  android:icon="@drawable/ic_share"
-                  android:title="Share"/>
-            <item android:id="@+id/nav_send"
-                  android:icon="@drawable/ic_send"
-                  android:title="Send"/>
-        </menu>
-    </item>
+    </group>
 
 </menu>

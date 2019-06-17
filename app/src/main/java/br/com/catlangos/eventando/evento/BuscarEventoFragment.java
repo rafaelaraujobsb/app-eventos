@@ -34,6 +34,8 @@ public class BuscarEventoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        requireActivity().setTheme(R.style.AlertDialogCustom);
         return inflater.inflate(R.layout.fragment_buscar_evento, container, false);
     }
 
@@ -62,6 +64,7 @@ public class BuscarEventoFragment extends Fragment {
         btnCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
                 builder.setTitle("Selecione a categoria");
 
