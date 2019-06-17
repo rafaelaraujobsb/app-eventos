@@ -100,8 +100,9 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot issue : dataSnapshot.getChildren()) {
                                 chaveEvento = issue.getKey();
-                                if(issue.child("participantes").getValue() != null)
-                                    usuarios.add(issue.child("participantes").getValue().toString());
+                                if(issue.child("participantes").getValue() != null) {
+                                    usuarios.add(cast(issue.child("participantes").getValue()).get(0).toString());
+                                }
                             }
                         }
 
@@ -161,5 +162,8 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                 });
             }
         });
+    }
+    public static <T extends List<?>> T cast(Object obj) {
+        return (T) obj;
     }
 }
