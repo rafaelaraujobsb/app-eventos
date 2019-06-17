@@ -9,13 +9,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Meus Eventos"
+            android:text="Participações"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="26sp"
             android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewMenuPrincipal"
+            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtEventoSugerido"/>
