@@ -150,8 +150,11 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
                             if(usuarios.contains(chaveUsuario)) {
                                 for(int i = 0; i < usuarios.size(); i++) {
                                     if(usuarios.get(i).equals(chaveUsuario)) {
-                                        usuarios.remove(i);
                                         btnParticiparEvento.setText("Participar do Evento");
+                                        Map<String, Object> map = new HashMap<>();
+                                        map.put(String.valueOf(i), null);
+                                        issue.getRef().child("participantes").updateChildren(map);
+                                        usuarios.remove(i);
                                         break;
                                     }
                                 }
@@ -232,8 +235,8 @@ public class VisualizarEventoActivity extends AppCompatActivity implements Seria
         alertDialog.setMessage(message);
         alertDialog.setNeutralButton("OK", null);
         if (alertType == null) {
-            alertDialog.setIcon(AlertType.FEEDBACK.getDrawable());
-            alertDialog.setTitle(AlertType.FEEDBACK.getTitle());
+            alertDialog.setIcon(AlertType.AGRADECIMENTO.getDrawable());
+            alertDialog.setTitle(AlertType.AGRADECIMENTO.getTitle());
         } else {
             alertDialog.setIcon(alertType.getDrawable());
             alertDialog.setTitle(alertType.getTitle());

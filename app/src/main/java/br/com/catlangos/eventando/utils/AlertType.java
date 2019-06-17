@@ -5,7 +5,8 @@ public enum AlertType {
     WARN(android.R.drawable.ic_dialog_alert, "Alerta"),
     SUCESS(android.R.drawable.checkbox_on_background, "Sucesso"),
     ERROR(android.R.drawable.ic_delete, "Erro"),
-    FEEDBACK(android.R.drawable.ic_dialog_info, "Deixe seu Feedback :)");
+    FEEDBACK(android.R.drawable.ic_dialog_info, "Deixe seu Feedback :)"),
+    AGRADECIMENTO(android.R.drawable.ic_dialog_info, "Obrigado pelo Feedback!");
 
     // número inteiro que guarda o valor do ícone que será mostrado no
     // dialog
