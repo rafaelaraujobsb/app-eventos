@@ -1,6 +1,7 @@
 package br.com.catlangos.eventando.login;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.catlangos.eventando.R;
+import br.com.catlangos.eventando.home.HomeActivity;
 import br.com.catlangos.eventando.utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -148,6 +150,14 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Utils.Companion.isEqualsEditText(txtSenha, txtConfirmarSenha)){
+                    if(userItems.size() < 5) {
+                        Toast.makeText(CadastroActivity.this, "Ao menos 5 categorias de interesse devem ser selecionadas", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if(!Utils.Companion.isCPF(numCpf.getText().toString())) {
+                        Toast.makeText(CadastroActivity.this, "O CPF informado é inválido. Favor digitar novamente.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     if(Utils.Companion.isEqualsEditText(txtEmail, txtConfirmarEmail)){
                         perfil = new Perfil();
                         perfil.setEmail(Utils.Companion.editTextToString(txtEmail));

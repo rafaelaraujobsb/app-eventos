@@ -22,4 +22,4 @@ class Metricas(Resource):
             resultado['metricas'] = resultado['metricas']
             r.append(resultado)
 
-        return Resposta.retorno(r)
+        return Resposta.retorno(sorted(r, key=lambda modelo: -modelo['metricas']['f1_teste']))
