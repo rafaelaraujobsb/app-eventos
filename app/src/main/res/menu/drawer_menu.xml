@@ -7,9 +7,12 @@
         <item android:id="@+id/nav_home"
               android:icon="@drawable/ic_home"
               android:title="Menu Principal"/>
+        <item android:id="@+id/nav_participacoes"
+              android:icon="@drawable/ic_evento"
+              android:title="Participações"/>
         <item android:id="@+id/nav_meus_eventos"
               android:icon="@drawable/ic_evento"
-              android:title="Meus Eventos"/>
+              android:title="Meus eventos"/>
         <item android:id="@+id/nav_cadastrar_evento"
               android:icon="@drawable/ic_send"
               android:title="Cadastrar Evento"/>

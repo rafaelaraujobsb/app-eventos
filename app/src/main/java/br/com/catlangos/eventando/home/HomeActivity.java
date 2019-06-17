@@ -8,13 +8,10 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import br.com.catlangos.eventando.R;
 import br.com.catlangos.eventando.evento.BuscarEventoFragment;
 import br.com.catlangos.eventando.evento.CriarEventoFragment;
-import br.com.catlangos.eventando.evento.MeusEventosFragment;
+import br.com.catlangos.eventando.evento.ParticipacoesFragment;
 import br.com.catlangos.eventando.fragmentos.MenuPrincipal;
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,6 +21,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private final static String MENU_PRINCIPAL = "MENU_PRINCIPAL";
     private final static String CRIAR_EVENTO = "CRIAR_EVENTO";
     private final static String BUSCAR_EVENTO = "BUSCAR_EVENTO";
+    private final static String PARTICIPACOES = "PARTICIPACOES";
 
 
     @Override
@@ -71,9 +69,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         new BuscarEventoFragment(), BUSCAR_EVENTO).commit();
                 break;
 
-            case R.id.nav_meus_eventos:
+            case R.id.nav_participacoes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MeusEventosFragment()).commit();
+                        new ParticipacoesFragment(), PARTICIPACOES).commit();
+                break;
 
         }
 
@@ -89,10 +88,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         CriarEventoFragment criarEventoFragment = (CriarEventoFragment)getSupportFragmentManager().findFragmentByTag(CRIAR_EVENTO);
         BuscarEventoFragment buscarEventoFragment = (BuscarEventoFragment)getSupportFragmentManager().findFragmentByTag(BUSCAR_EVENTO);
+        ParticipacoesFragment participacoesFragment = (ParticipacoesFragment) getSupportFragmentManager().findFragmentByTag(PARTICIPACOES);
 
         if(criarEventoFragment != null && criarEventoFragment.isVisible()){
             voltarAoMenu();
         }else if(buscarEventoFragment != null && buscarEventoFragment.isVisible()){
+            voltarAoMenu();
+        }else if(participacoesFragment != null && participacoesFragment.isVisible()){
             voltarAoMenu();
         }else{
             super.onBackPressed();

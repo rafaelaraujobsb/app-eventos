@@ -1,11 +1,12 @@
 package br.com.catlangos.eventando.login
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import br.com.catlangos.eventando.R
-import br.com.catlangos.eventando.evento.CriarEventoActivity
 import br.com.catlangos.eventando.home.HomeActivity
 import br.com.catlangos.eventando.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
@@ -30,7 +31,16 @@ class LoginActivity : AppCompatActivity() {
 
     private fun eventoLogin(view: View) {
         //TODO Mensagem mais amigavel com interface melhor
+
+        val inputMethodManager = this.getSystemService(
+            Activity.INPUT_METHOD_SERVICE
+        ) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            this.currentFocus.windowToken, 0
+        )
+
         utils.apresentarMensagem(view, "Autenticando...")
+
 
         if(!Utils.isNull(txtEmail.text.toString()) && !Utils.isNull(txtSenha.text.toString())) {
             autenticacao?.signInWithEmailAndPassword(txtEmail.text.toString(), txtSenha.text.toString())?.addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->

@@ -19,7 +19,7 @@ import com.google.firebase.database.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MeusEventosFragment extends Fragment implements MeuViewHolder.OnEventoClickListener {
+public class ParticipacoesFragment extends Fragment implements MeuViewHolder.OnEventoClickListener {
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
