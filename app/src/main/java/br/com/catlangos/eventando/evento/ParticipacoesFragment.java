@@ -38,7 +38,7 @@ public class ParticipacoesFragment extends Fragment implements MeuViewHolder.OnE
         reference2 = database.getReference();
         query = reference.child("Usuarios").orderByChild("email").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
-        return inflater.inflate(R.layout.fragmento_meus_eventos, container, false);
+        return inflater.inflate(R.layout.fragment_participacoes, container, false);
     }
 
     public static <T extends List<?>> T cast(Object obj) {

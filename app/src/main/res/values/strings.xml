@@ -24,8 +24,8 @@
     <string name="criar">CRIAR</string>
     <string name="title_activity_maps">Map</string>
     <string name="categoria">Categoria</string>
-    <string name="horarioInicio">Horário de início: </string>
-    <string name="horarioTermino">Horário de término: </string>
-    <string name="dataInicio">Data de início: </string>
-    <string name="dataTermino">Data de término: </string>
+    <string name="horarioInicio">Horário de início:</string>
+    <string name="horarioTermino">Horário de término:</string>
+    <string name="dataInicio">Data de início:</string>
+    <string name="dataTermino">Data de término:</string>
 </resources>
