@@ -29,6 +29,7 @@ public class ParticipacoesFragment extends Fragment implements MeuViewHolder.OnE
     List<Evento> eventos = new ArrayList<>();
     MeuViewHolder.OnEventoClickListener ctx;
     private String idUsuario;
+    private List<String> idsUsuarios = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,14 +60,26 @@ public class ParticipacoesFragment extends Fragment implements MeuViewHolder.OnE
                     }
                 }
 
-                query2 = reference2.child("Eventos").orderByChild("participantes").equalTo(idUsuario);
+                query2 = reference2.child("Eventos").orderByChild("participantes");
                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ref : dataSnapshot.getChildren()){
-                            Evento evento = ref.getValue(Evento.class);
-                            if(evento != null){
-                                eventos.add(evento);
+                            if(ref.child("participantes").getValue() != null) {
+                                try {
+                                    List<String> lst = cast(ref.child("participantes").getValue());
+                                    for(int i = 0; i < lst.size(); i++) {
+                                        idsUsuarios.add(lst.get(i));
+                                    }
+                                } catch (ClassCastException e) {
+                                    idsUsuarios.add(ref.child("participantes").getValue().toString());
+                                }
+                            }
+                            if(idsUsuarios.contains(idUsuario)) {
+                                Evento evento = ref.getValue(Evento.class);
+                                if(evento != null){
+                                    eventos.add(evento);
+                                }
                             }
                         }
                         RecyclerView recyclerView = requireActivity().findViewById(R.id.recyclerViewMenuPrincipal);
